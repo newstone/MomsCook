@@ -1,0 +1,9 @@
+﻿  uic MomsCook.ui
+  rcc MomsCook.qrc
+  moc MomsCook.h
+   RCC: Warning: No resources in 'C:\Users\newst\source\repos\MomsCook\MomsCook.qrc'.
+  main.cpp
+  MomsCook.cpp
+  qrc_MomsCook.cpp
+  moc_MomsCook.cpp
+  MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Debug\MomsCook.exe
