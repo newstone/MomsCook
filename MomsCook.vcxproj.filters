@@ -31,6 +31,18 @@
     <ClCompile Include="MomsCook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Contents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Dish.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Nutrient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCalendar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MomsCook.h">
@@ -46,5 +58,19 @@
     <QtRcc Include="MomsCook.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Contents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dish.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Nutrient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCalendar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

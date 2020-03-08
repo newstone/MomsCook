@@ -80,8 +80,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Contents.cpp" />
+    <ClCompile Include="Dish.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MomsCook.cpp" />
+    <ClCompile Include="MyCalendar.cpp" />
+    <ClCompile Include="Nutrient.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MomsCook.h" />
@@ -91,6 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="MomsCook.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Contents.h" />
+    <ClInclude Include="Dish.h" />
+    <ClInclude Include="MyCalendar.h" />
+    <ClInclude Include="Nutrient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

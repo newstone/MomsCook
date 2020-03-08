@@ -1,6 +1,7 @@
 #pragma once
-
 #include <QtWidgets/QMainWindow>
+#include <QTextBrowser>
+#include "MyCalendar.h"
 #include "ui_MomsCook.h"
 
 class MomsCook : public QMainWindow
@@ -9,7 +10,9 @@ class MomsCook : public QMainWindow
 
 public:
 	MomsCook(QWidget *parent = Q_NULLPTR);
-
+	void init();
+	void makeCalendar();
 private:
 	Ui::MomsCookClass ui;
+	Calendar calendar;
 };
