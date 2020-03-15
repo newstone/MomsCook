@@ -30,10 +30,7 @@ class Ui_MomsCookClass
 public:
     QAction *action;
     QWidget *centralWidget;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
     QLabel *lbVersion;
-    QTextBrowser *textMonth;
     QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_2;
     QTextBrowser *textBrowser;
@@ -93,6 +90,9 @@ public:
     QTextBrowser *days39;
     QTextBrowser *days40;
     QTextBrowser *days41;
+    QPushButton *prevButton;
+    QPushButton *nextButton;
+    QTextBrowser *textMonth;
     QMenuBar *menuBar;
     QMenu *menu_F;
     QToolBar *toolBar;
@@ -106,25 +106,17 @@ public:
         action->setObjectName(QString::fromUtf8("action"));
         centralWidget = new QWidget(MomsCookClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(450, 10, 31, 31));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(650, 10, 31, 31));
         lbVersion = new QLabel(centralWidget);
         lbVersion->setObjectName(QString::fromUtf8("lbVersion"));
         lbVersion->setGeometry(QRect(20, 20, 56, 12));
-        textMonth = new QTextBrowser(centralWidget);
-        textMonth->setObjectName(QString::fromUtf8("textMonth"));
-        textMonth->setGeometry(QRect(490, 10, 151, 31));
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 60, 1111, 51));
+        layoutWidget->setGeometry(QRect(10, 60, 1111, 41));
         horizontalLayout_2 = new QHBoxLayout(layoutWidget);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
         horizontalLayout_2->setContentsMargins(4, 4, 4, 4);
         textBrowser = new QTextBrowser(layoutWidget);
         textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
@@ -421,6 +413,15 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_9);
 
+        prevButton = new QPushButton(centralWidget);
+        prevButton->setObjectName(QString::fromUtf8("prevButton"));
+        prevButton->setGeometry(QRect(450, 10, 31, 31));
+        nextButton = new QPushButton(centralWidget);
+        nextButton->setObjectName(QString::fromUtf8("nextButton"));
+        nextButton->setGeometry(QRect(650, 10, 31, 31));
+        textMonth = new QTextBrowser(centralWidget);
+        textMonth->setObjectName(QString::fromUtf8("textMonth"));
+        textMonth->setGeometry(QRect(490, 10, 151, 31));
         MomsCookClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MomsCookClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -447,8 +448,6 @@ public:
     {
         MomsCookClass->setWindowTitle(QCoreApplication::translate("MomsCookClass", "MomsCook", nullptr));
         action->setText(QCoreApplication::translate("MomsCookClass", "\354\242\205\353\243\214", nullptr));
-        pushButton->setText(QCoreApplication::translate("MomsCookClass", "\342\227\200", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MomsCookClass", "\342\226\266", nullptr));
         lbVersion->setText(QCoreApplication::translate("MomsCookClass", "v0.0.1", nullptr));
         textBrowser->setHtml(QCoreApplication::translate("MomsCookClass", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
@@ -485,6 +484,8 @@ public:
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Gulim'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">\354\235\274</span></p></body></html>", nullptr));
+        prevButton->setText(QCoreApplication::translate("MomsCookClass", "\342\227\200", nullptr));
+        nextButton->setText(QCoreApplication::translate("MomsCookClass", "\342\226\266", nullptr));
         menu_F->setTitle(QCoreApplication::translate("MomsCookClass", "\355\214\214\354\235\274(F)", nullptr));
     } // retranslateUi
 

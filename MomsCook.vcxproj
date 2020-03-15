@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Contents.cpp" />
+    <ClCompile Include="ContentsClass.cpp" />
     <ClCompile Include="Dish.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MomsCook.cpp" />
@@ -91,6 +92,7 @@
     <QtMoc Include="MomsCook.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="ContentsClass.ui" />
     <QtUic Include="MomsCook.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Contents.h" />
+    <QtMoc Include="ContentsClass.h" />
     <ClInclude Include="Dish.h" />
     <ClInclude Include="MyCalendar.h" />
     <ClInclude Include="Nutrient.h" />

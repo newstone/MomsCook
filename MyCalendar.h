@@ -5,16 +5,21 @@
 #define CALENDAR
 #include <QDate>
 
+namespace Ui {
+	class MomsCookClass;
+};
+
 class Calendar {
 public:
 	Calendar();
 	virtual ~Calendar();
-
-	void setSelectedDay(QDate d);
-	void setToDay(QDate d);
+	
+	void makeCalendar(Ui::MomsCookClass& ui, QDate date);
+	void setDate(QDate date);
+	QDate getDate();
 private:
+	Contents contents[31];
 	QDate selectedDay;
-	QDate toDay;
 };
 #endif
 

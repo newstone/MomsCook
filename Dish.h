@@ -1,6 +1,10 @@
 #pragma once
 #include "Nutrient.h"
 
+enum class DISH_TYPE {
+	RICE, SOUP, SIDE
+};
+
 class Dish {
 public:
 	Dish();
@@ -8,6 +12,8 @@ public:
 	Nutrient getNutrient();
 	int getCalory();
 private:
-	Nutrient mNutrient();
+	Nutrient mNutrient;
+
+	DISH_TYPE type;
 	int calory;
 };

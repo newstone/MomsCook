@@ -43,13 +43,22 @@
     <ClCompile Include="MyCalendar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ContentsClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MomsCook.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="ContentsClass.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="ContentsClass.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
     <QtUic Include="MomsCook.ui">
       <Filter>Form Files</Filter>
     </QtUic>
