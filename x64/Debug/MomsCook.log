@@ -1,3 +1,5 @@
-﻿  MomsCook.cpp
+﻿  moc MomsCook.h
+  MomsCook.cpp
+  main.cpp
   moc_MomsCook.cpp
   MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Debug\MomsCook.exe

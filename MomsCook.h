@@ -18,7 +18,7 @@ private slots:
 	void showContents(QDate date);
 	void hideContents();
 protected:
-	void mousePressEvent(QMouseEvent* event) override;
+	bool eventFilter(QObject* obj, QEvent* event) override;
 private:
 	Ui::MomsCookClass ui;
 	Calendar calendar;

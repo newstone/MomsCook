@@ -443,7 +443,7 @@ public:
 
         QMetaObject::connectSlotsByName(MomsCookClass);
     } // setupUi
-
+  
     void retranslateUi(QMainWindow *MomsCookClass)
     {
         MomsCookClass->setWindowTitle(QCoreApplication::translate("MomsCookClass", "MomsCook", nullptr));
