@@ -15,7 +15,7 @@ public:
 	void init();
 private slots:
 	void handleButton(bool flag);
-	void showContents(QDate date);
+	void showContents(const QDate& day);
 	void hideContents();
 protected:
 	bool eventFilter(QObject* obj, QEvent* event) override;

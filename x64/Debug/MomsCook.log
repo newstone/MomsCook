@@ -1,5 +1,6 @@
-﻿  moc MomsCook.h
-  MomsCook.cpp
+﻿  ContentsClass.cpp
   main.cpp
+  MomsCook.cpp
+  moc_ContentsClass.cpp
   moc_MomsCook.cpp
   MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Debug\MomsCook.exe

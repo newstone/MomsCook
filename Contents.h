@@ -2,7 +2,6 @@
 
 #include <vector>
 #include "Dish.h"
-#include <string>
 
 using namespace std;
 
@@ -10,7 +9,8 @@ class Contents {
 public:
 	Contents();
 	~Contents();
-	string getDate();
+
+	string getDishs();
 
 private:
 	string selectedDay;

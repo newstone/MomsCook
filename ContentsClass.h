@@ -10,6 +10,10 @@ class ContentsClass : public QWidget
 public:
 	ContentsClass(QWidget *parent = Q_NULLPTR);
 	~ContentsClass();
+	void loadData();
+
+	QTextBrowser* getDateTextBrowser();
+	QTextBrowser* getContentsTextBrowser();
 
 private:
 	Ui::ContentsClass ui;
