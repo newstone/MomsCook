@@ -16,7 +16,8 @@ public:
 	Dish();
 	virtual ~Dish();
 	Nutrient getNutrient();
-	int getCalory();
+	int getCalory(); 
+	void setName(const string& name);
 	const string& getName();
 private:
 	string name;

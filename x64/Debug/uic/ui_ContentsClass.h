@@ -19,28 +19,28 @@
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QListWidget>
+
+#define CONTENTS_TYPE 3
 
 QT_BEGIN_NAMESPACE
 
 class Ui_ContentsClass
 {
 public:
-    QTextBrowser *contentsTextBrowser;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QTabWidget *tabWidget;
+    QTextBrowser* contentsTextBrowser;
+    QWidget* layoutWidget;
+    QVBoxLayout* verticalLayout;
+    QPushButton* pushButton;
+    QPushButton* pushButton_2;
+    QTabWidget* tabWidget;
 
     QWidget** tabs;
-    QScrollArea** scrollAreas;
-    QWidget** scrollAreaWidgetContents;
-    QListView** listViews;
-    QScrollBar** verticalScrollBars;
+    QListWidget** listViews;
 
-    QTextBrowser *dateTextBrowser;
+    QTextBrowser* dateTextBrowser;
 
-    void setupUi(QWidget *ContentsClass)
+    void setupUi(QWidget* ContentsClass)
     {
         if (ContentsClass->objectName().isEmpty())
             ContentsClass->setObjectName(QString::fromUtf8("ContentsClass"));
@@ -70,30 +70,16 @@ public:
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setGeometry(QRect(220, 50, 331, 331));
 
-        tabs = new QWidget*[5];
-        scrollAreas = new QScrollArea*[5];
-        scrollAreaWidgetContents = new QWidget*[5];
-        listViews = new QListView*[5];
-        verticalScrollBars = new QScrollBar*[5];
+        tabs = new QWidget * [CONTENTS_TYPE];
+        listViews = new QListWidget * [CONTENTS_TYPE];
 
-        for (unsigned int i = 0; i < 5; ++i) {
+        for (unsigned int i = 0; i < CONTENTS_TYPE; ++i) {
             tabs[i] = new QWidget();
             tabs[i]->setObjectName(QString::fromUtf8("tabs"));
-            scrollAreas[i] = new QScrollArea(tabs[i]);
-            scrollAreas[i]->setObjectName(QString::fromUtf8("scrollAreas"));
-            scrollAreas[i]->setGeometry(QRect(0, 0, 311, 311));
-            scrollAreas[i]->setWidgetResizable(true);
-            scrollAreaWidgetContents[i] = new QWidget();
-            scrollAreaWidgetContents[i]->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-            scrollAreaWidgetContents[i]->setGeometry(QRect(0, 0, 309, 309));
-            listViews[i] = new QListView(scrollAreaWidgetContents[i]);
-            listViews[i]->setObjectName(QString::fromUtf8("listViews"));
-            listViews[i]->setGeometry(QRect(0, 0, 311, 311));
-            scrollAreas[i]->setWidget(scrollAreaWidgetContents[i]);
-            verticalScrollBars[i] = new QScrollBar(tabs[i]);
-            verticalScrollBars[i]->setObjectName(QString::fromUtf8("verticalScrollBars"));
-            verticalScrollBars[i]->setGeometry(QRect(310, 0, 16, 311));
-            verticalScrollBars[i]->setOrientation(Qt::Vertical);
+            std::string s = "listViews";
+            listViews[i] = new QListWidget(tabs[i]);
+            listViews[i]->setObjectName(QString::fromUtf8((s + std::to_string(i + 1)).c_str()));
+            listViews[i]->setGeometry(QRect(0, 0, 331, 311));
             tabWidget->addTab(tabs[i], QString());
         }
 
@@ -103,29 +89,29 @@ public:
 
         retranslateUi(ContentsClass);
         QObject::connect(pushButton_2, SIGNAL(clicked()), ContentsClass, SLOT(close()));
-
+        //    for (int i = 0; i < 3; ++i) {
+       //         QObject::connect(listViews[i], SIGNAL(clicked()), ContentsClass, SLOT(close()));
+       ////   }
         tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ContentsClass);
     } // setupUi
 
-    void retranslateUi(QWidget *ContentsClass)
+    void retranslateUi(QWidget* ContentsClass)
     {
         ContentsClass->setWindowTitle(QCoreApplication::translate("ContentsClass", "ContentsClass", nullptr));
         pushButton->setText(QCoreApplication::translate("ContentsClass", "\354\240\200\354\236\245", nullptr));
         pushButton_2->setText(QCoreApplication::translate("ContentsClass", "\353\202\230\352\260\200\352\270\260", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabs[0]), QCoreApplication::translate("ContentsClass", QString::fromLocal8Bit("밥").toStdString().c_str(), nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tabs[1]), QCoreApplication::translate("ContentsClass", QString::fromLocal8Bit("국").toStdString().c_str(), nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tabs[2]), QCoreApplication::translate("ContentsClass", QString::fromLocal8Bit("반찬1").toStdString().c_str(), nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tabs[3]), QCoreApplication::translate("ContentsClass", QString::fromLocal8Bit("반찬2").toStdString().c_str(), nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tabs[4]), QCoreApplication::translate("ContentsClass", QString::fromLocal8Bit("반찬3").toStdString().c_str(), nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tabs[2]), QCoreApplication::translate("ContentsClass", QString::fromLocal8Bit("반찬").toStdString().c_str(), nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class ContentsClass: public Ui_ContentsClass {};
+    class ContentsClass : public Ui_ContentsClass {};
 } // namespace Ui
 
 QT_END_NAMESPACE

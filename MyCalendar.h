@@ -19,7 +19,8 @@ public:
 	void reloadContents(const QDate& date);
 
 	QDate getDate();
-	Contents& getContents(int date);
+	Contents& getContent(int date);
+	Contents* getContents();
 private:
 	Contents contents[31];
 	QDate selectedDay;

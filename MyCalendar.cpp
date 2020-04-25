@@ -13,8 +13,11 @@ void Calendar::setDate(const QDate& date) {
 QDate Calendar::getDate() {
 	return selectedDay;
 }
-Contents& Calendar::getContents(int date) {
+Contents& Calendar::getContent(int date) {
 	return contents[date];
+}
+Contents* Calendar::getContents() {
+	return contents;
 }
 void Calendar::reloadContents(const QDate& date) {
 	for (unsigned int i = 0; i < DAYS; ++i) {

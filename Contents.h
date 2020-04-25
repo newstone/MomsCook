@@ -9,7 +9,8 @@ class Contents {
 public:
 	Contents();
 	~Contents();
-
+	
+	void SetDish(DISH_TYPE type, const string& dish);
 	string getDishs();
 
 private:

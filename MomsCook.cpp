@@ -42,7 +42,7 @@ void MomsCook::init() {
 	QDate date;
 	date.setDate(calendar.getDate().year(), calendar.getDate().month(), 1);
 	calendar.makeCalendar(ui, date);
-
+	selectedContents->setContents(calendar.getContents());
 	for (unsigned int i = 0; i < DAYS; ++i) {
 		ui.days[i]->installEventFilter(this);
 	}
@@ -84,7 +84,7 @@ void MomsCook::showContents(const QDate& date) {
 	string strDate = "날짜: " + to_string(year) + "년 " + to_string(month) + "월 " + to_string(day) + "일";
 
 	selectedContents->getDateTextBrowser()->setText(QString::fromLocal8Bit(strDate.c_str()));
-	Contents& content = calendar.getContents(date.day() - 1);
+	Contents& content = calendar.getContent(date.day() - 1);
 
 	selectedContents->getContentsTextBrowser()->setText(QString::fromLocal8Bit(content.getDishs().c_str()));
 	selectedContents->show();
@@ -102,6 +102,7 @@ bool MomsCook::eventFilter(QObject* obj, QEvent* e) {
 	case QEvent::MouseButtonPress:
 		for (unsigned int i = 0; i < DAYS; ++i) {
 			if (obj == ui.days[i]) {
+				selectedContents->setDateIndex(i);
 				int day = getNumberFromString(ui.days[i]->toPlainText().toStdString());
 				if (day == 0)
 					break;
