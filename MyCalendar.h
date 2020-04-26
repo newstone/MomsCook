@@ -5,6 +5,8 @@
 #define CALENDAR
 #include <QDate>
 
+#define CONTENTS_COUNT 31
+
 namespace Ui {
 	class MomsCookClass;
 };
@@ -19,10 +21,10 @@ public:
 	void reloadContents(const QDate& date);
 
 	QDate getDate();
-	Contents& getContent(int date);
+	Contents* getContent(int date);
 	Contents* getContents();
 private:
-	Contents contents[31];
+	Contents contents[CONTENTS_COUNT];
 	QDate selectedDay;
 };
 #endif

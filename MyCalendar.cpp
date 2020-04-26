@@ -13,8 +13,13 @@ void Calendar::setDate(const QDate& date) {
 QDate Calendar::getDate() {
 	return selectedDay;
 }
-Contents& Calendar::getContent(int date) {
-	return contents[date];
+Contents* Calendar::getContent(int date) {
+	if (date < CONTENTS_COUNT) {
+		return &contents[date];
+	}
+	else {
+		return nullptr;
+	}
 }
 Contents* Calendar::getContents() {
 	return contents;

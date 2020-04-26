@@ -32,6 +32,11 @@ MomsCook::MomsCook(QWidget *parent)
 	connect(ui.nextButton, &QPushButton::clicked, [=]() {
 		handleButton(true);
 		});
+	for (unsigned int i = 0; i < DAYS; ++i) {
+		ui.days[i]->installEventFilter(this);
+	}
+	QObject::connect(this, SIGNAL(clickTextBrowser(QTextBrowser*)), this, SLOT(selectDay(QTextBrowser*)));
+	
 	init();
 }
 MomsCook::~MomsCook() {
@@ -84,38 +89,45 @@ void MomsCook::showContents(const QDate& date) {
 	string strDate = "날짜: " + to_string(year) + "년 " + to_string(month) + "월 " + to_string(day) + "일";
 
 	selectedContents->getDateTextBrowser()->setText(QString::fromLocal8Bit(strDate.c_str()));
-	Contents& content = calendar.getContent(date.day() - 1);
+	Contents* content = calendar.getContent(date.day() - 1);
 
-	selectedContents->getContentsTextBrowser()->setText(QString::fromLocal8Bit(content.getDishs().c_str()));
+	selectedContents->getContentsTextBrowser()->setText(QString::fromLocal8Bit(content->getDishs().c_str()));
 	selectedContents->show();
 }
-
-void MomsCook::hideContents() {
-	selectedContents->hide();
+void MomsCook::selectDay(QTextBrowser* obj) {
+	int day = getNumberFromString(obj->toPlainText().toStdString());
+	selectedContents->setDateIndex(day - 1);
+	if (day == 0) {
+		selectedContents->hide();
+		return;
+	}
+	selectedContents->resetSavedDishes();
+	QDate date = calendar.getDate();
+	date.setDate(date.year(), date.month(), day);
+	showContents(date);
 }
 
 // Event
 bool MomsCook::eventFilter(QObject* obj, QEvent* e) {
-	switch (e->type()) {
-	case QEvent::MouseButtonRelease:
+	QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(e);
+	switch (mouseEvent->button()) {
+	case Qt::RightButton:
 		break;
-	case QEvent::MouseButtonPress:
+	case Qt::LeftButton:
 		for (unsigned int i = 0; i < DAYS; ++i) {
 			if (obj == ui.days[i]) {
-				selectedContents->setDateIndex(i);
-				int day = getNumberFromString(ui.days[i]->toPlainText().toStdString());
-				if (day == 0)
-					break;
-				QDate date = calendar.getDate();
-				date.setDate(date.year(), date.month(), day);
-				showContents(date);
-				break;
+				emit clickTextBrowser(ui.days[i]);
 			}
 		}
 		break;
 	default:
+		if (selectedContents->isUpdated() && !selectedContents->isVisible()) {
+			QDate date = calendar.getDate();
+			date.setDate(date.year(), date.month(), 1);
+			calendar.makeCalendar(ui, date);
+		}
 		break;
 	}
-	return QMainWindow::eventFilter(obj, e);;
+	return QMainWindow::eventFilter(obj, e);
 }
 

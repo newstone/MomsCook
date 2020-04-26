@@ -13,12 +13,14 @@ public:
 	MomsCook(QWidget *parent = Q_NULLPTR);
 	virtual ~MomsCook();
 	void init();
+signals:
+	void clickTextBrowser(QTextBrowser* obj);
 private slots:
 	void handleButton(bool flag);
+	void selectDay(QTextBrowser* obj);
 	void showContents(const QDate& day);
-	void hideContents();
 protected:
-	bool eventFilter(QObject* obj, QEvent* event) override;
+	virtual bool eventFilter(QObject* obj, QEvent* event) override;
 private:
 	Ui::MomsCookClass ui;
 	Calendar calendar;

@@ -4,7 +4,16 @@ Contents::Contents() : dishes(DISH){
 }
 Contents::~Contents() {
 }
-void Contents::SetDish(DISH_TYPE type, const string& dish) {
+
+bool Contents::isInitialized() {
+	return dishes.size();
+}
+
+bool Contents::SetDish(DISH_TYPE type, const string& dish) {
+	if (dishes.size() == 0) {
+		return false;
+	}
+
 	if (type != DISH_TYPE::SIDE1) {
 		if (dishes[static_cast<int>(type)].getName() == "") {
 			dishes[static_cast<int>(type)].setName(dish);
@@ -18,6 +27,7 @@ void Contents::SetDish(DISH_TYPE type, const string& dish) {
 			}
 		}
 	}
+	return true;
 }
 string Contents::getDishs() {
 	string contents = "====================\n";

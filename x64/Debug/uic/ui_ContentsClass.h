@@ -89,9 +89,6 @@ public:
 
         retranslateUi(ContentsClass);
         QObject::connect(pushButton_2, SIGNAL(clicked()), ContentsClass, SLOT(close()));
-        //    for (int i = 0; i < 3; ++i) {
-       //         QObject::connect(listViews[i], SIGNAL(clicked()), ContentsClass, SLOT(close()));
-       ////   }
         tabWidget->setCurrentIndex(0);
 
 
