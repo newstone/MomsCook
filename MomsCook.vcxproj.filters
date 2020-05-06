@@ -23,6 +23,15 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="QtClass">
+      <UniqueIdentifier>{52404801-8c79-4461-bdbf-bf9ca6f42602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QtClass\Header Files">
+      <UniqueIdentifier>{a8dab986-f926-40cb-81ee-98be0655bd8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QtClass\Source Files">
+      <UniqueIdentifier>{e293373f-bde6-4ce7-86ac-afc090317787}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="ContentsClass.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyTextBrowser.cpp">
+      <Filter>QtClass\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="MyCalendar.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyTextBrowser.h">
+      <Filter>QtClass\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

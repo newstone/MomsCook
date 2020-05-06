@@ -5,26 +5,14 @@
 
 using namespace std;
 
-
-int getNumberFromString(const string& s) {
-	int result = 0;
-	if (isdigit(s[0])) {
-		result += (s[0] - '0');
-		if (isdigit(s[1])) {
-			result *= 10;
-			result += (s[1] - '0');
-		}
-	}
-	return result;
-}
-
 //////////////////////////////////////////////////////////////////////
 
 MomsCook::MomsCook(QWidget *parent)
-	: selectedContents(nullptr), QMainWindow(parent)
+	: selectedContents(nullptr), QMainWindow(parent), isPressed(false)
 {
 	ui.setupUi(this);
 	selectedContents = new ContentsClass();
+	selectedContents->SetContentsText(&calendar);
 	selectedContents->hide();
 	connect(ui.prevButton, &QPushButton::clicked, [=]() {
 		handleButton(false);
@@ -32,12 +20,11 @@ MomsCook::MomsCook(QWidget *parent)
 	connect(ui.nextButton, &QPushButton::clicked, [=]() {
 		handleButton(true);
 		});
-	for (unsigned int i = 0; i < DAYS; ++i) {
-		ui.days[i]->installEventFilter(this);
-	}
-	QObject::connect(this, SIGNAL(clickTextBrowser(QTextBrowser*)), this, SLOT(selectDay(QTextBrowser*)));
-	
 	init();
+	for (unsigned int i = 0; i < DAYS; ++i) {
+		ui.days[i]->setSelectedContent(selectedContents);
+		ui.days[i]->setCalendar(&calendar);
+	}
 }
 MomsCook::~MomsCook() {
 	if(selectedContents)
@@ -48,9 +35,7 @@ void MomsCook::init() {
 	date.setDate(calendar.getDate().year(), calendar.getDate().month(), 1);
 	calendar.makeCalendar(ui, date);
 	selectedContents->setContents(calendar.getContents());
-	for (unsigned int i = 0; i < DAYS; ++i) {
-		ui.days[i]->installEventFilter(this);
-	}
+	this->installEventFilter(this);
 }
 
 void MomsCook::handleButton(bool flag) {
@@ -80,33 +65,43 @@ void MomsCook::handleButton(bool flag) {
 	calendar.makeCalendar(ui, date);
 }
 
-void MomsCook::showContents(const QDate& date) {
-	
-	selectedContents->getDateTextBrowser()->clear();
-	int day = date.day();
-	int month = date.month();
-	int year = date.year();
-	string strDate = "날짜: " + to_string(year) + "년 " + to_string(month) + "월 " + to_string(day) + "일";
 
-	selectedContents->getDateTextBrowser()->setText(QString::fromLocal8Bit(strDate.c_str()));
-	Contents* content = calendar.getContent(date.day() - 1);
-
-	selectedContents->getContentsTextBrowser()->setText(QString::fromLocal8Bit(content->getDishs().c_str()));
-	selectedContents->show();
-}
-void MomsCook::selectDay(QTextBrowser* obj) {
-	int day = getNumberFromString(obj->toPlainText().toStdString());
-	selectedContents->setDateIndex(day - 1);
-	if (day == 0) {
-		selectedContents->hide();
-		return;
+void MomsCook::mouseMoveEvent(QMouseEvent* event) {
+	switch (event->buttons())
+	{
+	case Qt::RightButton:
+		break;
+	case Qt::LeftButton:
+		break;
+	default:
+		break;
 	}
-	selectedContents->resetSavedDishes();
-	QDate date = calendar.getDate();
-	date.setDate(date.year(), date.month(), day);
-	showContents(date);
+}
+void MomsCook::mousePressEvent(QMouseEvent* event) {
+	switch (event->button())
+	{
+	case Qt::RightButton:
+		break;
+	case Qt::LeftButton:
+		isPressed = true;
+		break;
+	default:
+		break;
+	}
 }
 
+void MomsCook::mouseReleaseEvent(QMouseEvent* event) {
+	switch (event->buttons())
+	{
+	case Qt::RightButton:
+		break;
+	case Qt::LeftButton:
+		isPressed = true;
+		break;
+	default:
+		break;
+	}
+}
 // Event
 bool MomsCook::eventFilter(QObject* obj, QEvent* e) {
 	QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(e);
@@ -114,11 +109,6 @@ bool MomsCook::eventFilter(QObject* obj, QEvent* e) {
 	case Qt::RightButton:
 		break;
 	case Qt::LeftButton:
-		for (unsigned int i = 0; i < DAYS; ++i) {
-			if (obj == ui.days[i]) {
-				emit clickTextBrowser(ui.days[i]);
-			}
-		}
 		break;
 	default:
 		if (selectedContents->isUpdated() && !selectedContents->isVisible()) {

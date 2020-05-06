@@ -1,10 +1,30 @@
 #include "ContentsClass.h"
 #include "Contents.h"
+#include "MyCalendar.h"
+#include <iostream>
+#include <QDate>
+
+#pragma comment(lib, "libmysql.lib")
 
 ContentsClass::ContentsClass(QWidget *parent)
-	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false){
+	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false) {
 	ui.setupUi(this);
 	loadData();
+	char* sql = "select now()";
+	int ret;
+
+	conn = mysql_init(nullptr);
+	if (!conn) {
+		assert();
+	} 
+	conn = mysql_real_connect(conn, "localhost", "root", "Wja896523", "dish", 3306, (char*)NULL, 0);
+	if (conn) {
+		std::cout << "Connect Success!" << std::endl;
+	}
+	else {
+		std::cout << "Connect Fail!" << std::endl;
+	}
+	
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(saveDish()));
 	for (int i = 0; i < CONTENTS_TYPE; ++i) {
 		currSide[i] = "";
@@ -13,6 +33,8 @@ ContentsClass::ContentsClass(QWidget *parent)
 }
 
 ContentsClass::~ContentsClass(){
+	mysql_free_result(res);
+	mysql_close(conn);
 }
 void ContentsClass::setDateIndex(unsigned int idx) {
 	dateIndex = idx;
@@ -75,6 +97,11 @@ void ContentsClass::SetContentsText(string& contentsText) {
 	contentsText += currSide[2];
 	contentsText += "\n";
 }
+
+void ContentsClass::SetContentsText(Calendar* c) {
+	calendar = c;
+}
+
 void ContentsClass::resetSavedDishes() {
 	currRice = "";
 	currSoup = "";
@@ -104,11 +131,41 @@ void ContentsClass::clickedDish() {
 }
 
 void ContentsClass::saveDish() {
+	QDate date = calendar->getDate();
+
 	contents[dateIndex].SetDish(DISH_TYPE::RICE, currRice);
 	contents[dateIndex].SetDish(DISH_TYPE::SOUP, currSoup);
 	contents[dateIndex].SetDish(DISH_TYPE::SIDE1, currSide[0]);
 	contents[dateIndex].SetDish(DISH_TYPE::SIDE2, currSide[1]);
 	contents[dateIndex].SetDish(DISH_TYPE::SIDE3, currSide[2]);
+	string sql = "INSERT INTO menu(date, rice, soup, side1, side2, side3) VALUES(";
+	sql += "\'";
+	sql += to_string(date.year());
+	sql += "-";
+	sql += to_string(date.month());
+	sql += "-";
+	sql += to_string(date.day());
+	sql += "\', ";
+
+	sql += "\'";
+	sql += currRice;
+	sql += "\', ";
+
+	sql += "\'";
+	sql += currSoup;
+	sql += "\', ";
+	for (unsigned int i = 0; i < 3; ++i) {
+		sql += "\'";
+		sql += currSide[i];
+		sql += "\'";
+		if (i < 2) {
+			sql += ", ";
+		}
+	}
+	sql += ")";
+	int ret = mysql_query(conn, sql.c_str());
+	res = mysql_store_result(conn);
+
 	updateFlag = true;
 
 	this->close();

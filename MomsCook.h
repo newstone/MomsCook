@@ -17,12 +17,15 @@ signals:
 	void clickTextBrowser(QTextBrowser* obj);
 private slots:
 	void handleButton(bool flag);
-	void selectDay(QTextBrowser* obj);
-	void showContents(const QDate& day);
 protected:
 	virtual bool eventFilter(QObject* obj, QEvent* event) override;
+	virtual void mouseMoveEvent(QMouseEvent* event) override;
+	virtual void mousePressEvent(QMouseEvent* event) override;
+	virtual void mouseReleaseEvent(QMouseEvent* event) override;
 private:
 	Ui::MomsCookClass ui;
 	Calendar calendar;
 	ContentsClass* selectedContents;
+
+	bool isPressed;
 };

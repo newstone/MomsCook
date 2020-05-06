@@ -25,6 +25,8 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
+#include "MyTextBrowser.h"
+
 QT_BEGIN_NAMESPACE
 
 #define DAYS 42
@@ -53,7 +55,7 @@ public:
     QWidget* scrollAreaWidgetContents_2;
     QWidget* layoutWidget_2;
     QVBoxLayout* verticalLayout_3;
-    QTextBrowser** days;
+    MyTextBrowser** days;
     QHBoxLayout** horizontalLayouts;
     QScrollBar* verticalScrollBar;
     QMenuBar* menuBar;
@@ -141,7 +143,7 @@ public:
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
 
-        days = new QTextBrowser * [DAYS];
+        days = new MyTextBrowser * [DAYS];
         horizontalLayouts = new QHBoxLayout * [LAYOUTS];
 
         for (unsigned int l = 0; l < LAYOUTS; ++l) {
@@ -154,7 +156,7 @@ public:
             for (unsigned int d = 0; d < WEEK; ++d) {
                 QString strDays = "horizontalLayout";
                 strLayout += std::to_string(l * WEEK + d).c_str();
-                days[l * WEEK + d] = new QTextBrowser(layoutWidget_2);
+                days[l * WEEK + d] = new MyTextBrowser(layoutWidget_2);
                 days[l * WEEK + d]->setObjectName(strDays);
                 horizontalLayouts[l]->addWidget(days[l * WEEK + d]);
             }
