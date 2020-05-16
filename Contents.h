@@ -11,9 +11,9 @@ public:
 	~Contents();
 
 	bool isInitialized();
-	bool SetDish(DISH_TYPE type, const string& dish);
-	string getDishs();
-
+	bool setDish(DISH_TYPE type, const string& dish);
+	string getContentsString();
+	void reset();
 private:
 	string selectedDay;
 	string toDay;

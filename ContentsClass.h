@@ -19,8 +19,9 @@ public:
 	void setDateIndex(unsigned int idx);
 	void setContents(Contents* contents);
 	bool setSide(const std::string& side);
-	void SetContentsText(string& contentsText);
-	void SetContentsText(Calendar* c);
+	void setContentsText(string& contentsText);
+	void setContentsText(Calendar* c);
+	void setMYSQL(MYSQL* conn);
 	void resetSavedDishes();
 	void loadData();
 	bool isUpdated();

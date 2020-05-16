@@ -2,6 +2,7 @@
 #include <QMouseEvent>
 #include <QUndoStack>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -12,7 +13,7 @@ MomsCook::MomsCook(QWidget *parent)
 {
 	ui.setupUi(this);
 	selectedContents = new ContentsClass();
-	selectedContents->SetContentsText(&calendar);
+	selectedContents->setContentsText(&calendar);
 	selectedContents->hide();
 	connect(ui.prevButton, &QPushButton::clicked, [=]() {
 		handleButton(false);
@@ -29,13 +30,34 @@ MomsCook::MomsCook(QWidget *parent)
 MomsCook::~MomsCook() {
 	if(selectedContents)
 		delete selectedContents;
+	if (conn)
+		mysql_close(conn);
 }
+
 void MomsCook::init() {
 	QDate date;
+	initDatabase();
 	date.setDate(calendar.getDate().year(), calendar.getDate().month(), 1);
+	calendar.setMYSQL(conn);
+	calendar.reloadContents(date);
 	calendar.makeCalendar(ui, date);
 	selectedContents->setContents(calendar.getContents());
+	selectedContents->setMYSQL(conn);
 	this->installEventFilter(this);
+}
+
+void MomsCook::initDatabase() {
+	conn = mysql_init(nullptr);
+	if (!conn) {
+		assert();
+	}
+	conn = mysql_real_connect(conn, "localhost", "root", "Wja896523", "dish", 3306, (char*)NULL, 0);
+	if (conn) {
+		std::cout << "Connect Success!" << std::endl;
+	}
+	else {
+		std::cout << "Connect Fail!" << std::endl;
+	}
 }
 
 void MomsCook::handleButton(bool flag) {

@@ -1,3 +1,2 @@
-﻿  ContentsClass.cpp
-C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(18,3): warning C4003: 함수 같은 매크로 호출 'assert'에 대해 인수가 부족합니다.
+﻿  MyTextBrowser.cpp
   MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Debug\MomsCook.exe

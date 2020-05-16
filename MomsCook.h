@@ -13,6 +13,7 @@ public:
 	MomsCook(QWidget *parent = Q_NULLPTR);
 	virtual ~MomsCook();
 	void init();
+	void initDatabase();
 signals:
 	void clickTextBrowser(QTextBrowser* obj);
 private slots:
@@ -26,6 +27,9 @@ private:
 	Ui::MomsCookClass ui;
 	Calendar calendar;
 	ContentsClass* selectedContents;
+
+	MYSQL* conn;
+	MYSQL_RES* res;
 
 	bool isPressed;
 };

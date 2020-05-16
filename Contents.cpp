@@ -9,7 +9,7 @@ bool Contents::isInitialized() {
 	return dishes.size();
 }
 
-bool Contents::SetDish(DISH_TYPE type, const string& dish) {
+bool Contents::setDish(DISH_TYPE type, const string& dish) {
 	if (dishes.size() == 0) {
 		return false;
 	}
@@ -29,7 +29,16 @@ bool Contents::SetDish(DISH_TYPE type, const string& dish) {
 	}
 	return true;
 }
-string Contents::getDishs() {
+
+void Contents::reset() {
+	dishes[static_cast<int>(DISH_TYPE::RICE)].setName("");
+	dishes[static_cast<int>(DISH_TYPE::SOUP)].setName("");
+	dishes[static_cast<int>(DISH_TYPE::SIDE1)].setName("");
+	dishes[static_cast<int>(DISH_TYPE::SIDE2)].setName("");
+	dishes[static_cast<int>(DISH_TYPE::SIDE3)].setName("");
+}
+
+string Contents::getContentsString() {
 	string contents = "====================\n";
 	for (DISH_TYPE i = DISH_TYPE::RICE; i != DISH_TYPE::END; ++i) {
 		switch (i)

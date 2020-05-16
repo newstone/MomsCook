@@ -6,17 +6,15 @@
 
 #pragma comment(lib, "libmysql.lib")
 
-ContentsClass::ContentsClass(QWidget *parent)
+ContentsClass::ContentsClass(QWidget* parent)
 	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false) {
 	ui.setupUi(this);
 	loadData();
-	char* sql = "select now()";
-	int ret;
 
 	conn = mysql_init(nullptr);
 	if (!conn) {
 		assert();
-	} 
+	}
 	conn = mysql_real_connect(conn, "localhost", "root", "Wja896523", "dish", 3306, (char*)NULL, 0);
 	if (conn) {
 		std::cout << "Connect Success!" << std::endl;
@@ -24,7 +22,7 @@ ContentsClass::ContentsClass(QWidget *parent)
 	else {
 		std::cout << "Connect Fail!" << std::endl;
 	}
-	
+
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(saveDish()));
 	for (int i = 0; i < CONTENTS_TYPE; ++i) {
 		currSide[i] = "";
@@ -32,9 +30,7 @@ ContentsClass::ContentsClass(QWidget *parent)
 	}
 }
 
-ContentsClass::~ContentsClass(){
-	mysql_free_result(res);
-	mysql_close(conn);
+ContentsClass::~ContentsClass() {
 }
 void ContentsClass::setDateIndex(unsigned int idx) {
 	dateIndex = idx;
@@ -79,7 +75,7 @@ bool ContentsClass::setSide(const string& side) {
 	return false;
 }
 
-void ContentsClass::SetContentsText(string& contentsText) {
+void ContentsClass::setContentsText(string& contentsText) {
 	contentsText += "====================\n";
 	contentsText += "นไ: ";
 	contentsText += currRice;
@@ -98,8 +94,12 @@ void ContentsClass::SetContentsText(string& contentsText) {
 	contentsText += "\n";
 }
 
-void ContentsClass::SetContentsText(Calendar* c) {
+void ContentsClass::setContentsText(Calendar* c) {
 	calendar = c;
+}
+
+void ContentsClass::setMYSQL(MYSQL* c) {
+	conn = c;
 }
 
 void ContentsClass::resetSavedDishes() {
@@ -125,7 +125,7 @@ void ContentsClass::clickedDish() {
 		break;
 	}
 	string contentsText = "";
-	SetContentsText(contentsText);
+	setContentsText(contentsText);
 	ui.contentsTextBrowser->setText(QString::fromLocal8Bit(contentsText.c_str()));
 	ui.contentsTextBrowser->update();
 }
@@ -133,38 +133,47 @@ void ContentsClass::clickedDish() {
 void ContentsClass::saveDish() {
 	QDate date = calendar->getDate();
 
-	contents[dateIndex].SetDish(DISH_TYPE::RICE, currRice);
-	contents[dateIndex].SetDish(DISH_TYPE::SOUP, currSoup);
-	contents[dateIndex].SetDish(DISH_TYPE::SIDE1, currSide[0]);
-	contents[dateIndex].SetDish(DISH_TYPE::SIDE2, currSide[1]);
-	contents[dateIndex].SetDish(DISH_TYPE::SIDE3, currSide[2]);
-	string sql = "INSERT INTO menu(date, rice, soup, side1, side2, side3) VALUES(";
-	sql += "\'";
+	contents[dateIndex].setDish(DISH_TYPE::RICE, currRice);
+	contents[dateIndex].setDish(DISH_TYPE::SOUP, currSoup);
+	contents[dateIndex].setDish(DISH_TYPE::SIDE1, currSide[0]);
+	contents[dateIndex].setDish(DISH_TYPE::SIDE2, currSide[1]);
+	contents[dateIndex].setDish(DISH_TYPE::SIDE3, currSide[2]);
+	string sql = "INSERT INTO menu VALUES ( ";
+	sql += "'";
 	sql += to_string(date.year());
 	sql += "-";
+	if (date.month() / 10 == 0) {
+		sql += "0";
+	}
 	sql += to_string(date.month());
 	sql += "-";
+	if (date.day() / 10 == 0) {
+		sql += "0";
+	}
 	sql += to_string(date.day());
-	sql += "\', ";
+	sql += "', '";
 
-	sql += "\'";
 	sql += currRice;
-	sql += "\', ";
+	sql += "', '";
 
-	sql += "\'";
 	sql += currSoup;
-	sql += "\', ";
+	sql += "', ";
 	for (unsigned int i = 0; i < 3; ++i) {
-		sql += "\'";
+		sql += "'";
 		sql += currSide[i];
-		sql += "\'";
+		sql += "'";
 		if (i < 2) {
 			sql += ", ";
 		}
 	}
-	sql += ")";
+	sql += " )";
 	int ret = mysql_query(conn, sql.c_str());
-	res = mysql_store_result(conn);
+
+	if (ret == 0) {
+		res = mysql_store_result(conn);
+
+		mysql_free_result(res);
+	}
 
 	updateFlag = true;
 

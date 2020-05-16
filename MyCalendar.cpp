@@ -1,5 +1,6 @@
 #include "MyCalendar.h"
 #include "ui_MomsCook.h"
+#include "mysql.h"
 
 Calendar::Calendar() {
 	selectedDay = QDate::currentDate();
@@ -9,6 +10,9 @@ Calendar::~Calendar() {
 }
 void Calendar::setDate(const QDate& date) {
 	selectedDay = date;
+}
+void Calendar::setMYSQL(MYSQL* c) {
+	conn = c;
 }
 QDate Calendar::getDate() {
 	return selectedDay;
@@ -25,10 +29,51 @@ Contents* Calendar::getContents() {
 	return contents;
 }
 void Calendar::reloadContents(const QDate& date) {
-	for (unsigned int i = 0; i < DAYS; ++i) {
-		//
+
+	for (unsigned int i = 0; i < CONTENTS_COUNT; ++i) {
+		contents[i].reset();
+	}
+
+	string query = "SELECT * FROM menu WHERE date(date) BETWEEN \'";
+	query += to_string(date.year());
+	query += "-";
+	if (date.month() / 10 == 0) {
+		query += "0";
+	}
+	query += to_string(date.month());
+	query += "-01\' AND \'";
+	int nextMonth = date.month() + 1;
+	if (nextMonth > 12) {
+		query += to_string(date.year() + 1);
+		query += "-01";
+	}
+	else {
+		query += to_string(date.year());
+		query += "-";
+		if (nextMonth / 10 == 0) {
+			query += "0";
+		}
+		query += to_string(nextMonth);
+	}
+	query += "-01\'";
+
+	int result = mysql_query(conn, query.c_str());
+	MYSQL_RES* sql_result = nullptr;
+	MYSQL_ROW sql_row;
+
+	if (result == 0) {
+		sql_result = mysql_store_result(conn);
+		while((sql_row = mysql_fetch_row(sql_result)) != nullptr) {
+			string currDate = sql_row[0];
+			int currDay = atoi(&currDate[8]);
+			for (unsigned int i = 0; i < 5; ++i) {
+				contents[currDay - 1].setDish(static_cast<DISH_TYPE>(i), sql_row[i + 1]);
+			}
+		}
+		mysql_free_result(sql_result);
 	}
 }
+
 void Calendar::makeCalendar(Ui::MomsCookClass& ui, const QDate& date) {
 
 	QString m(to_string(date.month()).c_str());
@@ -47,7 +92,7 @@ void Calendar::makeCalendar(Ui::MomsCookClass& ui, const QDate& date) {
 				if (QDate::isValid(y, mo, realDate)) {
 					string strContents = to_string(realDate++);
 					strContents += "\n";
-					strContents += contents[realDate - 2].getDishs();
+					strContents += contents[realDate - 2].getContentsString();
 					ui.days[i]->setText(QString::fromLocal8Bit(strContents.c_str()));
 				} else {
 					ui.days[i]->setText("");
