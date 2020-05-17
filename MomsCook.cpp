@@ -135,6 +135,7 @@ bool MomsCook::eventFilter(QObject* obj, QEvent* e) {
 	default:
 		if (selectedContents->isUpdated() && !selectedContents->isVisible()) {
 			QDate date = calendar.getDate();
+			calendar.reloadContents(date);
 			date.setDate(date.year(), date.month(), 1);
 			calendar.makeCalendar(ui, date);
 		}

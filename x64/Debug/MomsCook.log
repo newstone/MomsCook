@@ -1,2 +1,4 @@
-﻿  MyTextBrowser.cpp
+﻿  MomsCook.cpp
+  MyCalendar.cpp
+C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(52,3): warning C4003: 함수 같은 매크로 호출 'assert'에 대해 인수가 부족합니다.
   MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Debug\MomsCook.exe

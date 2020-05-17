@@ -174,6 +174,39 @@ void ContentsClass::saveDish() {
 
 		mysql_free_result(res);
 	}
+	else {
+		sql = "UPDATE menu SET rice = \'";
+		sql += currRice;
+		sql += "\', soup = \'";
+		sql += currSoup;
+		sql += "\', side1 = \'";
+		sql += currSide[0];
+		sql += "\', side2 = \'";
+		sql += currSide[1];
+		sql += "\', side3 = \'";
+		sql += currSide[2];
+		sql += "\' WHERE date = \'";
+		sql += to_string(date.year());
+		sql += "-";
+		if (date.month() / 10 == 0) {
+			sql += "0";
+		}
+		sql += to_string(date.month());
+		sql += "-";
+		if (date.day() / 10 == 0) {
+			sql += "0";
+		}
+		sql += to_string(date.day());
+		sql += "\'";
+
+		ret = mysql_query(conn, sql.c_str());
+
+		if (ret == 0) {
+			res = mysql_store_result(conn);
+
+			mysql_free_result(res);
+		}
+	}
 
 	updateFlag = true;
 
