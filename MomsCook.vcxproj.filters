@@ -58,7 +58,7 @@
     <ClCompile Include="MyTextBrowser.cpp">
       <Filter>QtClass\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AdContentsClass.cpp">
+    <ClCompile Include="AddContentsClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,7 +69,7 @@
     <QtMoc Include="ContentsClass.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="AdContentsClass.h">
+    <QtMoc Include="AddContentsClass.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -80,7 +80,7 @@
     <QtUic Include="MomsCook.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="AdContentsClass.ui">
+    <QtUic Include="AddContentsClass.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

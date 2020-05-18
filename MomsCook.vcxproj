@@ -93,7 +93,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AdContentsClass.cpp" />
+    <ClCompile Include="AddContentsClass.cpp" />
     <ClCompile Include="Contents.cpp" />
     <ClCompile Include="ContentsClass.cpp" />
     <ClCompile Include="Dish.cpp" />
@@ -107,7 +107,7 @@
     <QtMoc Include="MomsCook.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="AdContentsClass.ui" />
+    <QtUic Include="AddContentsClass.ui" />
     <QtUic Include="ContentsClass.ui" />
     <QtUic Include="MomsCook.ui" />
   </ItemGroup>
@@ -115,7 +115,7 @@
     <QtRcc Include="MomsCook.qrc" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="AdContentsClass.h" />
+    <QtMoc Include="AddContentsClass.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Contents.h" />
     <QtMoc Include="ContentsClass.h" />

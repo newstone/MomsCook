@@ -4,6 +4,7 @@
 #include "ui_MomsCook.h"
 #include "MyCalendar.h"
 #include "ContentsClass.h"
+#include "AddContentsClass.h"
 
 class MomsCook : public QMainWindow
 {
@@ -18,6 +19,8 @@ signals:
 	void clickTextBrowser(QTextBrowser* obj);
 private slots:
 	void handleButton(bool flag);
+	void openAddContentsView();
+	void openStatisticsView();
 protected:
 	virtual bool eventFilter(QObject* obj, QEvent* event) override;
 	virtual void mouseMoveEvent(QMouseEvent* event) override;
@@ -27,6 +30,7 @@ private:
 	Ui::MomsCookClass ui;
 	Calendar calendar;
 	ContentsClass* selectedContents;
+	AddContentsClass* addContents;
 
 	MYSQL* conn;
 	MYSQL_RES* res;

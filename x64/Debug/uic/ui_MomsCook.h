@@ -50,6 +50,8 @@ public:
     QTextBrowser* textBrowser_7;
     QPushButton* prevButton;
     QPushButton* nextButton;
+    QPushButton* addMenuButton;
+    QPushButton* statisticsButton;
     QTextBrowser* textMonth;
     QScrollArea* scrollArea;
     QWidget* scrollAreaWidgetContents_2;
@@ -167,7 +169,14 @@ public:
         verticalScrollBar->setObjectName(QString::fromUtf8("verticalScrollBar"));
         verticalScrollBar->setGeometry(QRect(1110, 0, 21, 751));
         verticalScrollBar->setOrientation(Qt::Vertical);
-        scrollArea->setWidget(layoutWidget_2); 
+        scrollArea->setWidget(layoutWidget_2);
+        addMenuButton = new QPushButton(centralWidget);
+        addMenuButton->setObjectName(QString::fromUtf8("pushButton"));
+        addMenuButton->setGeometry(QRect(960, 20, 75, 23));
+        statisticsButton = new QPushButton(centralWidget);
+        statisticsButton->setObjectName(QString::fromUtf8("pushButton_2"));
+        statisticsButton->setGeometry(QRect(1050, 20, 75, 23));
+
         MomsCookClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MomsCookClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -232,9 +241,10 @@ public:
             "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">\354\235\274</span></p></body></html>", nullptr));
         prevButton->setText(QCoreApplication::translate("MomsCookClass", "\342\227\200", nullptr));
         nextButton->setText(QCoreApplication::translate("MomsCookClass", "\342\226\266", nullptr));
+        addMenuButton->setText(QCoreApplication::translate("MomsCookClass", "\353\251\224\353\211\264 \354\266\224\352\260\200", nullptr));
+        statisticsButton->setText(QCoreApplication::translate("MomsCookClass", "\355\206\265\352\263\204", nullptr));
         menu_F->setTitle(QCoreApplication::translate("MomsCookClass", "\355\214\214\354\235\274(F)", nullptr));
     } // retranslateUi
-
 };
 
 namespace Ui {

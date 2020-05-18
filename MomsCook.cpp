@@ -3,6 +3,7 @@
 #include <QUndoStack>
 #include <string>
 #include <iostream>
+#include "AddContentsClass.h"
 
 using namespace std;
 
@@ -13,13 +14,22 @@ MomsCook::MomsCook(QWidget *parent)
 {
 	ui.setupUi(this);
 	selectedContents = new ContentsClass();
+	addContents = new AddContentsClass();
+
 	selectedContents->setContentsText(&calendar);
+	addContents->hide();
 	selectedContents->hide();
 	connect(ui.prevButton, &QPushButton::clicked, [=]() {
 		handleButton(false);
 		});
 	connect(ui.nextButton, &QPushButton::clicked, [=]() {
 		handleButton(true);
+		});
+	connect(ui.addMenuButton, &QPushButton::clicked, [=]() {
+		openAddContentsView();
+		});
+	connect(ui.statisticsButton, &QPushButton::clicked, [=]() {
+		openStatisticsView();
 		});
 	init();
 	for (unsigned int i = 0; i < DAYS; ++i) {
@@ -59,7 +69,11 @@ void MomsCook::initDatabase() {
 		std::cout << "Connect Fail!" << std::endl;
 	}
 }
-
+void MomsCook::openAddContentsView() {
+	addContents->setVisible(true);
+}
+void MomsCook::openStatisticsView() {
+}
 void MomsCook::handleButton(bool flag) {
 	int month = calendar.getDate().month();
 	
