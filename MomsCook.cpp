@@ -3,7 +3,6 @@
 #include <QUndoStack>
 #include <string>
 #include <iostream>
-#include "AddContentsClass.h"
 
 using namespace std;
 
@@ -14,10 +13,8 @@ MomsCook::MomsCook(QWidget *parent)
 {
 	ui.setupUi(this);
 	selectedContents = new ContentsClass();
-	addContents = new AddContentsClass();
 
 	selectedContents->setContentsText(&calendar);
-	addContents->hide();
 	selectedContents->hide();
 	connect(ui.prevButton, &QPushButton::clicked, [=]() {
 		handleButton(false);
@@ -53,6 +50,7 @@ void MomsCook::init() {
 	calendar.makeCalendar(ui, date);
 	selectedContents->setContents(calendar.getContents());
 	selectedContents->setMYSQL(conn);
+	addContents = selectedContents->getAddContentsClass();
 	this->installEventFilter(this);
 }
 

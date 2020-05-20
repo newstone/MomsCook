@@ -7,9 +7,8 @@
 #pragma comment(lib, "libmysql.lib")
 
 ContentsClass::ContentsClass(QWidget* parent)
-	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false) {
+	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false), addContents(nullptr){
 	ui.setupUi(this);
-	loadData();
 
 	conn = mysql_init(nullptr);
 	if (!conn) {
@@ -22,6 +21,10 @@ ContentsClass::ContentsClass(QWidget* parent)
 	else {
 		std::cout << "Connect Fail!" << std::endl;
 	}
+	addContents = new AddContentsClass();
+	addContents->hide();
+	addContents->setSQL(conn);
+	loadData();
 
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(saveDish()));
 	for (int i = 0; i < CONTENTS_TYPE; ++i) {
@@ -35,10 +38,12 @@ ContentsClass::~ContentsClass() {
 void ContentsClass::setDateIndex(unsigned int idx) {
 	dateIndex = idx;
 }
+AddContentsClass* ContentsClass::getAddContentsClass() {
+	return addContents;
+}
 QTextBrowser* ContentsClass::getDateTextBrowser() {
 	return ui.dateTextBrowser;
 }
-
 QTextBrowser* ContentsClass::getContentsTextBrowser() {
 	return ui.contentsTextBrowser;
 }
@@ -49,6 +54,10 @@ void ContentsClass::setContents(Contents* contents) {
 }
 
 void ContentsClass::loadData() {
+	string query = "";
+
+
+
 	for (unsigned int i = 0; i < 3; ++i) {
 		int size = 100;
 		std::string contentsName = "contents";

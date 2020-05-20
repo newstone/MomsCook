@@ -4,7 +4,6 @@
 #include "ui_MomsCook.h"
 #include "MyCalendar.h"
 #include "ContentsClass.h"
-#include "AddContentsClass.h"
 
 class MomsCook : public QMainWindow
 {

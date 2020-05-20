@@ -1,10 +1,10 @@
-﻿  uic AddContentsClass.ui
-  moc MomsCook.h
-  moc AddContentsClass.h
-  AddContentsClass.cpp
-  main.cpp
+﻿  moc ContentsClass.h
+  ContentsClass.cpp
   MomsCook.cpp
-C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(62,3): warning C4003: 함수 같은 매크로 호출 'assert'에 대해 인수가 부족합니다.
+  MyTextBrowser.cpp
+  main.cpp
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(15,3): warning C4003: 함수 같은 매크로 호출 'assert'에 대해 인수가 부족합니다.
+C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(60,3): warning C4003: 함수 같은 매크로 호출 'assert'에 대해 인수가 부족합니다.
+  moc_ContentsClass.cpp
   moc_MomsCook.cpp
-  moc_AddContentsClass.cpp
   MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Debug\MomsCook.exe

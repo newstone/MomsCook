@@ -4,6 +4,7 @@
 #include <string>
 #include <mysql.h>
 #include "ui_ContentsClass.h"
+#include "AddContentsClass.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ public:
 	void loadData();
 	bool isUpdated();
 
+	AddContentsClass* getAddContentsClass();
 	QTextBrowser* getDateTextBrowser();
 	QTextBrowser* getContentsTextBrowser();
 private slots:
@@ -33,6 +35,8 @@ private slots:
 	void saveDish();
 private:
 	Ui::ContentsClass ui;
+	AddContentsClass* addContents;
+
 	MYSQL* conn;
 	MYSQL_RES* res;
 	MYSQL_ROW row;
