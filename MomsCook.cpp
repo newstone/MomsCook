@@ -57,7 +57,7 @@ void MomsCook::init() {
 void MomsCook::initDatabase() {
 	conn = mysql_init(nullptr);
 	if (!conn) {
-		assert();
+		assert(false);
 	}
 	conn = mysql_real_connect(conn, "localhost", "root", "Wja896523", "dish", 3306, (char*)NULL, 0);
 	if (conn) {

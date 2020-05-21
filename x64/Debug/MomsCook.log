@@ -1,10 +1,3 @@
-﻿  moc ContentsClass.h
-  ContentsClass.cpp
-  MomsCook.cpp
-  MyTextBrowser.cpp
-  main.cpp
-C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(15,3): warning C4003: 함수 같은 매크로 호출 'assert'에 대해 인수가 부족합니다.
-C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(60,3): warning C4003: 함수 같은 매크로 호출 'assert'에 대해 인수가 부족합니다.
-  moc_ContentsClass.cpp
-  moc_MomsCook.cpp
+﻿  AddContentsClass.cpp
+C:\Users\newst\source\repos\MomsCook\AddContentsClass.cpp(42,11): warning C4129: ',': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
   MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Debug\MomsCook.exe
