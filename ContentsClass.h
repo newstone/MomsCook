@@ -4,12 +4,12 @@
 #include <string>
 #include <mysql.h>
 #include "ui_ContentsClass.h"
-#include "AddContentsClass.h"
 
 using namespace std;
 
 class Calendar;
 class Contents;
+class AddContentsClass;
 
 class ContentsClass : public QWidget
 {
@@ -27,7 +27,7 @@ public:
 	void loadData();
 	bool isUpdated();
 
-	AddContentsClass* getAddContentsClass();
+	void setAddContentsClass(AddContentsClass* add);
 	QTextBrowser* getDateTextBrowser();
 	QTextBrowser* getContentsTextBrowser();
 private slots:

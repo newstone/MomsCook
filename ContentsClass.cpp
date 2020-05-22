@@ -3,6 +3,7 @@
 #include "MyCalendar.h"
 #include <iostream>
 #include <QDate>
+#include "AddContentsClass.h"
 
 #pragma comment(lib, "libmysql.lib")
 
@@ -21,10 +22,6 @@ ContentsClass::ContentsClass(QWidget* parent)
 	else {
 		std::cout << "Connect Fail!" << std::endl;
 	}
-	addContents = new AddContentsClass();
-	addContents->hide();
-	addContents->setSQL(conn);
-	loadData();
 
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(saveDish()));
 	for (int i = 0; i < CONTENTS_TYPE; ++i) {
@@ -38,8 +35,8 @@ ContentsClass::~ContentsClass() {
 void ContentsClass::setDateIndex(unsigned int idx) {
 	dateIndex = idx;
 }
-AddContentsClass* ContentsClass::getAddContentsClass() {
-	return addContents;
+ void ContentsClass::setAddContentsClass(AddContentsClass* add) {
+	addContents = add;
 }
 QTextBrowser* ContentsClass::getDateTextBrowser() {
 	return ui.dateTextBrowser;
@@ -54,17 +51,21 @@ void ContentsClass::setContents(Contents* contents) {
 }
 
 void ContentsClass::loadData() {
-	string query = "";
+	string query = "SELECT * FROM food ";
+	int result = mysql_query(conn, query.c_str());
+	MYSQL_RES* sql_result = nullptr;
+	MYSQL_ROW sql_row;
 
-
-
-	for (unsigned int i = 0; i < 3; ++i) {
-		int size = 100;
-		std::string contentsName = "contents";
-		for (unsigned int c = 0; c < size; ++c) {
-			ui.listViews[i]->addItem((contentsName + std::to_string(c)).c_str());
-		}
+	for (int i = 0; i < 3; ++i) {
+		ui.listViews[i]->clear();
 	}
+
+	sql_result = mysql_store_result(conn);
+	while ((sql_row = mysql_fetch_row(sql_result)) != nullptr) {
+		ui.listViews[atoi(sql_row[1])]->addItem(sql_row[0]);
+	}
+		
+	mysql_free_result(sql_result);
 }
 
 bool ContentsClass::isUpdated() {

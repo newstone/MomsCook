@@ -9,13 +9,13 @@ using namespace std;
 //////////////////////////////////////////////////////////////////////
 
 MomsCook::MomsCook(QWidget *parent)
-	: selectedContents(nullptr), QMainWindow(parent), isPressed(false)
+	: selectedContents(nullptr), QMainWindow(parent), isPressed(false), addContents(nullptr)
 {
 	ui.setupUi(this);
-	selectedContents = new ContentsClass();
-
+	addContents = new AddContentsClass();
+	addContents->hide();
+	selectedContents = addContents->getContentsClass();
 	selectedContents->setContentsText(&calendar);
-	selectedContents->hide();
 	connect(ui.prevButton, &QPushButton::clicked, [=]() {
 		handleButton(false);
 		});
@@ -35,8 +35,8 @@ MomsCook::MomsCook(QWidget *parent)
 	}
 }
 MomsCook::~MomsCook() {
-	if(selectedContents)
-		delete selectedContents;
+	if(addContents)
+		delete addContents;
 	if (conn)
 		mysql_close(conn);
 }
@@ -49,8 +49,8 @@ void MomsCook::init() {
 	calendar.reloadContents(date);
 	calendar.makeCalendar(ui, date);
 	selectedContents->setContents(calendar.getContents());
+	addContents->setSQL(conn);
 	selectedContents->setMYSQL(conn);
-	addContents = selectedContents->getAddContentsClass();
 	this->installEventFilter(this);
 }
 

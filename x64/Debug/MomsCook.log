@@ -1,3 +1,2 @@
-﻿  AddContentsClass.cpp
-C:\Users\newst\source\repos\MomsCook\AddContentsClass.cpp(42,11): warning C4129: ',': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+﻿  ContentsClass.cpp
   MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Debug\MomsCook.exe

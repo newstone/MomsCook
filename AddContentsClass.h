@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include "ui_AddContentsClass.h"
+#include "ContentsClass.h"
 
 class MYSQL;
 
@@ -12,6 +13,7 @@ public:
 	AddContentsClass(QWidget *parent = Q_NULLPTR);
 	~AddContentsClass();
 
+	ContentsClass* getContentsClass();
 	void setSQL(MYSQL* c);
 	void pushSaveButton(); 
 	void radioFunction(int i);
@@ -19,6 +21,7 @@ public:
 	void updateFoodList();
 private:
 	Ui::AddContentsClass ui;
+	ContentsClass* contentsClass;
 	MYSQL* conn;
 
 	int radioBtnIndex;

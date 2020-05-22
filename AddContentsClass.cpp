@@ -5,8 +5,9 @@
 using namespace std;
 
 AddContentsClass::AddContentsClass(QWidget *parent)
-	: QWidget(parent) , conn(nullptr), radioBtnIndex(-1)
+	: QWidget(parent) , conn(nullptr), radioBtnIndex(-1), contentsClass(nullptr)
 {
+	contentsClass = new ContentsClass();
 	ui.setupUi(this);
 	
 	connect(ui.pushButton, &QPushButton::clicked, [=]() {
@@ -23,12 +24,16 @@ AddContentsClass::AddContentsClass(QWidget *parent)
 	});
 }
 
-AddContentsClass::~AddContentsClass()
-{
+AddContentsClass::~AddContentsClass() {
+	if(contentsClass)
+		delete contentsClass;
 }
-
+ContentsClass* AddContentsClass::getContentsClass() {
+	return contentsClass;
+}
 void AddContentsClass::setSQL(MYSQL* c) {
 	conn = c;
+	updateFoodList();
 }
 
 void AddContentsClass::pushSaveButton() {
@@ -61,7 +66,7 @@ void AddContentsClass::pushSaveButton() {
 		ui.radioButton_3->setChecked(false);
 		ui.radioButton_3->setAutoExclusive(true);
 	}
-
+	updateFoodList();
 }
 
 void AddContentsClass::radioFunction(int i)
@@ -69,4 +74,22 @@ void AddContentsClass::radioFunction(int i)
 	radioBtnIndex = i;
 }
 void AddContentsClass::updateFoodList() {
+	string query = "SELECT * FROM food ";
+	int result = mysql_query(conn, query.c_str());
+	MYSQL_RES* sql_result = nullptr;
+	MYSQL_ROW sql_row;
+
+	for (int i = 0; i < 3; ++i) {
+		ui.listViews[i]->clear();
+	}
+
+	if (result == 0) {
+		sql_result = mysql_store_result(conn);
+		while ((sql_row = mysql_fetch_row(sql_result)) != nullptr) {
+			ui.listViews[atoi(sql_row[1])]->addItem(sql_row[0]);
+		}
+	}
+
+	contentsClass->loadData();
+	mysql_free_result(sql_result);
 }
