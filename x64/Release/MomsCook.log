@@ -1,0 +1,46 @@
+﻿  AddContentsClass.cpp
+  ContentsClass.cpp
+  MomsCook.cpp
+  MyCalendar.cpp
+C:\Users\newst\source\repos\MomsCook\MyCalendar.cpp(90,31): error C2065: 'DAYS': 선언되지 않은 식별자입니다.
+C:\Users\newst\source\repos\MomsCook\MyCalendar.cpp(96,13): error C2039: 'days': 'Ui::MomsCookClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_MomsCook.h(505): message : 'Ui::MomsCookClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\MyCalendar.cpp(98,13): error C2039: 'days': 'Ui::MomsCookClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_MomsCook.h(505): message : 'Ui::MomsCookClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\MyCalendar.cpp(102,12): error C2039: 'days': 'Ui::MomsCookClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_MomsCook.h(505): message : 'Ui::MomsCookClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\AddContentsClass.cpp(47,11): warning C4129: ',': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
+C:\Users\newst\source\repos\MomsCook\AddContentsClass.cpp(83,15): error C2039: 'listViews': 'Ui::AddContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_AddContentsClass.h(150): message : 'Ui::AddContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\AddContentsClass.cpp(89,16): error C2039: 'listViews': 'Ui::AddContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_AddContentsClass.h(150): message : 'Ui::AddContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(27,22): error C2065: 'CONTENTS_TYPE': 선언되지 않은 식별자입니다.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(29,32): error C2039: 'listViews': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(60,15): error C2039: 'listViews': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(65,15): error C2039: 'listViews': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(124,54): error C2039: 'tabWidget': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(128,26): error C2039: 'listViews': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(128,39): error C2039: 'tabWidget': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(131,26): error C2039: 'listViews': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(131,39): error C2039: 'tabWidget': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(134,23): error C2039: 'listViews': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\ContentsClass.cpp(134,36): error C2039: 'tabWidget': 'Ui::ContentsClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\x64\Release\uic\ui_ContentsClass.h(83): message : 'Ui::ContentsClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(25,26): error C2039: 'addMenuButton': 'Ui::MomsCookClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\MyCalendar.h(13): message : 'Ui::MomsCookClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(28,29): error C2039: 'statisticsButton': 'Ui::MomsCookClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\MyCalendar.h(13): message : 'Ui::MomsCookClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(32,31): error C2065: 'DAYS': 선언되지 않은 식별자입니다.
+C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(34,10): error C2039: 'days': 'Ui::MomsCookClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\MyCalendar.h(13): message : 'Ui::MomsCookClass' 선언을 참조하십시오.
+C:\Users\newst\source\repos\MomsCook\MomsCook.cpp(35,10): error C2039: 'days': 'Ui::MomsCookClass'의 멤버가 아닙니다.
+C:\Users\newst\source\repos\MomsCook\MyCalendar.h(13): message : 'Ui::MomsCookClass' 선언을 참조하십시오.

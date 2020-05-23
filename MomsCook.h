@@ -4,6 +4,8 @@
 #include "ui_MomsCook.h"
 #include "MyCalendar.h"
 #include "AddContentsClass.h"
+#include "MyTextBrowser.h"
+
 
 class MomsCook : public QMainWindow
 {
@@ -27,6 +29,8 @@ protected:
 	virtual void mouseReleaseEvent(QMouseEvent* event) override;
 private:
 	Ui::MomsCookClass ui;
+	QList<MyTextBrowser*> days;
+
 	Calendar calendar;
 	ContentsClass* selectedContents;
 	AddContentsClass* addContents;

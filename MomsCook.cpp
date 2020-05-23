@@ -6,12 +6,24 @@
 
 using namespace std;
 
+#define CALENDAR_WIDTH 153
+#define CALENDAR_HEIGHT 141
+
 //////////////////////////////////////////////////////////////////////
 
 MomsCook::MomsCook(QWidget *parent)
 	: selectedContents(nullptr), QMainWindow(parent), isPressed(false), addContents(nullptr)
 {
 	ui.setupUi(this);
+	days = this->findChildren<MyTextBrowser*>(QRegularExpression("days_\\d+$"));
+	QSize size;
+	size.setWidth(CALENDAR_WIDTH);
+	size.setHeight(CALENDAR_HEIGHT);
+	for (int i = 0; i < DAYS; ++i) {
+		days[i]->setFixedSize(size);
+	}
+	ui.scrollAreaWidgetContents->setLayout(ui.verticalLayout);
+	
 	addContents = new AddContentsClass();
 	addContents->hide();
 	selectedContents = addContents->getContentsClass();
@@ -30,8 +42,9 @@ MomsCook::MomsCook(QWidget *parent)
 		});
 	init();
 	for (unsigned int i = 0; i < DAYS; ++i) {
-		ui.days[i]->setSelectedContent(selectedContents);
-		ui.days[i]->setCalendar(&calendar);
+		
+		days[i]->setSelectedContent(selectedContents);
+		days[i]->setCalendar(&calendar);
 	}
 }
 MomsCook::~MomsCook() {
@@ -47,7 +60,7 @@ void MomsCook::init() {
 	date.setDate(calendar.getDate().year(), calendar.getDate().month(), 1);
 	calendar.setMYSQL(conn);
 	calendar.reloadContents(date);
-	calendar.makeCalendar(ui, date);
+	calendar.makeCalendar(ui, days, date);
 	selectedContents->setContents(calendar.getContents());
 	addContents->setSQL(conn);
 	selectedContents->setMYSQL(conn);
@@ -96,7 +109,7 @@ void MomsCook::handleButton(bool flag) {
 	}
 	calendar.reloadContents(date);
 	calendar.setDate(date);
-	calendar.makeCalendar(ui, date);
+	calendar.makeCalendar(ui, days, date);
 }
 
 
@@ -149,7 +162,7 @@ bool MomsCook::eventFilter(QObject* obj, QEvent* e) {
 			QDate date = calendar.getDate();
 			calendar.reloadContents(date);
 			date.setDate(date.year(), date.month(), 1);
-			calendar.makeCalendar(ui, date);
+			calendar.makeCalendar(ui, days, date);
 		}
 		break;
 	}

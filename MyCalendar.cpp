@@ -1,5 +1,6 @@
 #include "MyCalendar.h"
 #include "ui_MomsCook.h"
+#include "MyTextBrowser.h"
 #include "mysql.h"
 
 Calendar::Calendar() {
@@ -74,7 +75,7 @@ void Calendar::reloadContents(const QDate& date) {
 	}
 }
 
-void Calendar::makeCalendar(Ui::MomsCookClass& ui, const QDate& date) {
+void Calendar::makeCalendar(Ui::MomsCookClass& ui, QList<MyTextBrowser*>& days, const QDate& date) {
 
 	QString m(to_string(date.month()).c_str());
 	ui.textMonth->setFontPointSize(13);
@@ -93,13 +94,13 @@ void Calendar::makeCalendar(Ui::MomsCookClass& ui, const QDate& date) {
 					string strContents = to_string(realDate++);
 					strContents += "\n";
 					strContents += contents[realDate - 2].getContentsString();
-					ui.days[i]->setText(QString::fromLocal8Bit(strContents.c_str()));
+					days[i]->setText(QString::fromLocal8Bit(strContents.c_str()));
 				} else {
-					ui.days[i]->setText("");
+					days[i]->setText("");
 				}
 		} else {
 				++currDate;
-				ui.days[i]->setText("");
+				days[i]->setText("");
 		}
 	}
 }
