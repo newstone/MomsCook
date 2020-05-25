@@ -5,9 +5,9 @@ Dish::Dish() : calory (0), name(""){
 }
 Dish::~Dish() {
 }
-void Dish::setName(const string& name) {
+void Dish::setName(const QString& name) {
 	this->name = name;
 }
-const string& Dish::getName() {
+const QString& Dish::getName() {
 	return name;
 }

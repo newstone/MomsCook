@@ -1,5 +1,6 @@
 #pragma once
 #include "Nutrient.h"
+#include <QString>
 
 #define DISH 5
 
@@ -17,10 +18,10 @@ public:
 	virtual ~Dish();
 	Nutrient getNutrient();
 	int getCalory(); 
-	void setName(const string& name);
-	const string& getName();
+	void setName(const QString& name);
+	const QString& getName();
 private:
-	string name;
+	QString name;
 	Nutrient mNutrient;
 
 	DISH_TYPE type;

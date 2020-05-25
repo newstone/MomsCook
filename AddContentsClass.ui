@@ -25,11 +25,11 @@
    <property name="currentIndex">
     <number>0</number>
    </property>
-   <widget class="QWidget" name="tab">
+   <widget class="QWidget" name="tab_1">
     <attribute name="title">
-     <string>Tab 1</string>
+     <string>밥</string>
     </attribute>
-    <widget class="QListWidget" name="listWidget">
+    <widget class="QListWidget" name="listWidget_1">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -42,9 +42,24 @@
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>Tab 2</string>
+     <string>국</string>
     </attribute>
     <widget class="QListWidget" name="listWidget_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>281</width>
+       <height>351</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>반찬</string>
+    </attribute>
+    <widget class="QListWidget" name="listWidget_3">
      <property name="geometry">
       <rect>
        <x>0</x>

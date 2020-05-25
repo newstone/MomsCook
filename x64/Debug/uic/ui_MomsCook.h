@@ -190,7 +190,7 @@ public:
         scrollAreaWidgetContents->setSizePolicy(sizePolicy);
         layoutWidget1 = new QWidget(scrollAreaWidgetContents);
         layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(0, 0, 1121, 861));
+        layoutWidget1->setGeometry(QRect(0, 0, 1121, 1228));
         sizePolicy.setHeightForWidth(layoutWidget1->sizePolicy().hasHeightForWidth());
         layoutWidget1->setSizePolicy(sizePolicy);
         verticalLayout = new QVBoxLayout(layoutWidget1);

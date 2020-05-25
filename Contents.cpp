@@ -1,4 +1,5 @@
 #include "Contents.h"
+#include <QString>
 
 Contents::Contents() : dishes(DISH){ 
 }
@@ -9,7 +10,7 @@ bool Contents::isInitialized() {
 	return dishes.size();
 }
 
-bool Contents::setDish(DISH_TYPE type, const string& dish) {
+bool Contents::setDish(DISH_TYPE type, const QString& dish) {
 	if (dishes.size() == 0) {
 		return false;
 	}
@@ -38,33 +39,33 @@ void Contents::reset() {
 	dishes[static_cast<int>(DISH_TYPE::SIDE3)].setName("");
 }
 
-string Contents::getContentsString() {
-	string contents = "====================\n";
+QString Contents::getContentsString() {
+	QString contents = "\n";
 	for (DISH_TYPE i = DISH_TYPE::RICE; i != DISH_TYPE::END; ++i) {
 		switch (i)
 		{
 		case DISH_TYPE::RICE:
-			contents += "밥: ";
+			contents += QString::fromLocal8Bit("밥: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
 			break;
 		case DISH_TYPE::SOUP:
-			contents += "국: ";
+			contents += QString::fromLocal8Bit("국: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
 			break;
 		case DISH_TYPE::SIDE1:
-			contents += "반찬1: ";
+			contents += QString::fromLocal8Bit("반찬1: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
 			break;
 		case DISH_TYPE::SIDE2:
-			contents += "반찬2: ";
+			contents += QString::fromLocal8Bit("반찬2: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
 			break;
 		case DISH_TYPE::SIDE3:
-			contents += "반찬3: ";
+			contents += QString::fromLocal8Bit("반찬3: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
 			break;

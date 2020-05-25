@@ -27,10 +27,12 @@ class Ui_AddContentsClass
 {
 public:
     QTabWidget *tabWidget;
-    QWidget *tab;
-    QListWidget *listWidget;
+    QWidget *tab_1;
+    QListWidget *listWidget_1;
     QWidget *tab_2;
     QListWidget *listWidget_2;
+    QWidget *tab_3;
+    QListWidget *listWidget_3;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label;
@@ -52,18 +54,24 @@ public:
         tabWidget = new QTabWidget(AddContentsClass);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         tabWidget->setGeometry(QRect(10, 10, 281, 371));
-        tab = new QWidget();
-        tab->setObjectName(QString::fromUtf8("tab"));
-        listWidget = new QListWidget(tab);
-        listWidget->setObjectName(QString::fromUtf8("listWidget"));
-        listWidget->setGeometry(QRect(0, 0, 281, 351));
-        tabWidget->addTab(tab, QString());
+        tab_1 = new QWidget();
+        tab_1->setObjectName(QString::fromUtf8("tab_1"));
+        listWidget_1 = new QListWidget(tab_1);
+        listWidget_1->setObjectName(QString::fromUtf8("listWidget_1"));
+        listWidget_1->setGeometry(QRect(0, 0, 281, 351));
+        tabWidget->addTab(tab_1, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         listWidget_2 = new QListWidget(tab_2);
         listWidget_2->setObjectName(QString::fromUtf8("listWidget_2"));
         listWidget_2->setGeometry(QRect(0, 0, 281, 351));
         tabWidget->addTab(tab_2, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QString::fromUtf8("tab_3"));
+        listWidget_3 = new QListWidget(tab_3);
+        listWidget_3->setObjectName(QString::fromUtf8("listWidget_3"));
+        listWidget_3->setGeometry(QRect(0, 0, 281, 351));
+        tabWidget->addTab(tab_3, QString());
         layoutWidget = new QWidget(AddContentsClass);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(300, 20, 171, 171));
@@ -133,8 +141,9 @@ public:
     void retranslateUi(QWidget *AddContentsClass)
     {
         AddContentsClass->setWindowTitle(QCoreApplication::translate("AddContentsClass", "AddContentsClass", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("AddContentsClass", "Tab 1", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("AddContentsClass", "Tab 2", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_1), QCoreApplication::translate("AddContentsClass", "\353\260\245", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("AddContentsClass", "\352\265\255", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("AddContentsClass", "\353\260\230\354\260\254", nullptr));
         label->setText(QCoreApplication::translate("AddContentsClass", "\354\235\214\354\213\235 \354\235\264\353\246\204", nullptr));
         label_2->setText(QCoreApplication::translate("AddContentsClass", "\354\235\214\354\213\235 \354\242\205\353\245\230", nullptr));
         radioButton->setText(QCoreApplication::translate("AddContentsClass", "\353\260\245", nullptr));

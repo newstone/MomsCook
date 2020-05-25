@@ -9,7 +9,9 @@ AddContentsClass::AddContentsClass(QWidget *parent)
 {
 	contentsClass = new ContentsClass();
 	ui.setupUi(this);
-	
+	listViews.append(this->findChild<QListWidget*>("listWidget_1"));
+	listViews.append(this->findChild<QListWidget*>("listWidget_2"));
+	listViews.append(this->findChild<QListWidget*>("listWidget_3"));
 	connect(ui.pushButton, &QPushButton::clicked, [=]() {
 		pushSaveButton();
 		});
@@ -80,13 +82,13 @@ void AddContentsClass::updateFoodList() {
 	MYSQL_ROW sql_row;
 
 	for (int i = 0; i < 3; ++i) {
-		ui.listViews[i]->clear();
+		listViews[i]->clear();
 	}
 
 	if (result == 0) {
 		sql_result = mysql_store_result(conn);
 		while ((sql_row = mysql_fetch_row(sql_result)) != nullptr) {
-			ui.listViews[atoi(sql_row[1])]->addItem(sql_row[0]);
+			listViews[atoi(sql_row[1])]->addItem(QString::fromUtf8(sql_row[0]));
 		}
 	}
 

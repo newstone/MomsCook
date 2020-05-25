@@ -3,7 +3,7 @@
 #include "MyTextBrowser.h"
 #include "mysql.h"
 
-Calendar::Calendar() {
+Calendar::Calendar(): conn(nullptr) {
 	selectedDay = QDate::currentDate();
 }
 
@@ -68,7 +68,7 @@ void Calendar::reloadContents(const QDate& date) {
 			string currDate = sql_row[0];
 			int currDay = atoi(&currDate[8]);
 			for (unsigned int i = 0; i < 5; ++i) {
-				contents[currDay - 1].setDish(static_cast<DISH_TYPE>(i), sql_row[i + 1]);
+				contents[currDay - 1].setDish(static_cast<DISH_TYPE>(i), QString::fromUtf8(sql_row[i + 1]));
 			}
 		}
 		mysql_free_result(sql_result);
@@ -91,10 +91,10 @@ void Calendar::makeCalendar(Ui::MomsCookClass& ui, QList<MyTextBrowser*>& days, 
 	for (unsigned int i = 0; i < DAYS; ++i) {
 		if (startDate <= currDate) {
 				if (QDate::isValid(y, mo, realDate)) {
-					string strContents = to_string(realDate++);
+					QString strContents = QString::fromStdString(to_string(realDate++));
 					strContents += "\n";
 					strContents += contents[realDate - 2].getContentsString();
-					days[i]->setText(QString::fromLocal8Bit(strContents.c_str()));
+					days[i]->setText(strContents);
 				} else {
 					days[i]->setText("");
 				}

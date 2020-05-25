@@ -18,10 +18,12 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "MyTextBrowser.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -40,61 +42,63 @@ public:
     QTextBrowser *textBrowser_5;
     QTextBrowser *textBrowser_6;
     QTextBrowser *textBrowser_7;
-    QWidget *layoutWidget1;
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout_3;
-    QTextBrowser *days00;
-    QTextBrowser *days01;
-    QTextBrowser *days02;
-    QTextBrowser *days03;
-    QTextBrowser *days04;
-    QTextBrowser *days05;
-    QTextBrowser *days06;
-    QHBoxLayout *horizontalLayout_4;
-    QTextBrowser *days07;
-    QTextBrowser *days08;
-    QTextBrowser *days09;
-    QTextBrowser *days10;
-    QTextBrowser *days11;
-    QTextBrowser *days12;
-    QTextBrowser *days13;
-    QHBoxLayout *horizontalLayout_5;
-    QTextBrowser *days14;
-    QTextBrowser *days15;
-    QTextBrowser *days16;
-    QTextBrowser *days17;
-    QTextBrowser *days18;
-    QTextBrowser *days19;
-    QTextBrowser *days20;
-    QHBoxLayout *horizontalLayout_6;
-    QTextBrowser *days21;
-    QTextBrowser *days22;
-    QTextBrowser *days23;
-    QTextBrowser *days24;
-    QTextBrowser *days25;
-    QTextBrowser *days26;
-    QTextBrowser *days27;
-    QHBoxLayout *horizontalLayout_7;
-    QTextBrowser *days28;
-    QTextBrowser *days29;
-    QTextBrowser *days30;
-    QTextBrowser *days31;
-    QTextBrowser *days32;
-    QTextBrowser *days33;
-    QTextBrowser *days34;
-    QHBoxLayout *horizontalLayout_9;
-    QTextBrowser *days35;
-    QTextBrowser *days36;
-    QTextBrowser *days37;
-    QTextBrowser *days38;
-    QTextBrowser *days39;
-    QTextBrowser *days40;
-    QTextBrowser *days41;
     QPushButton *prevButton;
     QPushButton *nextButton;
     QTextBrowser *textMonth;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *addMenuButton;
+    QPushButton *statisticsButton;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QWidget *layoutWidget1;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
+    MyTextBrowser *days_1;
+    MyTextBrowser *days_2;
+    MyTextBrowser *days_3;
+    MyTextBrowser *days_4;
+    MyTextBrowser *days_5;
+    MyTextBrowser *days_6;
+    MyTextBrowser *days_7;
+    QHBoxLayout *horizontalLayout_3;
+    MyTextBrowser *days_8;
+    MyTextBrowser *days_9;
+    MyTextBrowser *days_10;
+    MyTextBrowser *days_11;
+    MyTextBrowser *days_12;
+    MyTextBrowser *days_13;
+    MyTextBrowser *days_14;
+    QHBoxLayout *horizontalLayout_4;
+    MyTextBrowser *days_15;
+    MyTextBrowser *days_16;
+    MyTextBrowser *days_17;
+    MyTextBrowser *days_18;
+    MyTextBrowser *days_19;
+    MyTextBrowser *days_20;
+    MyTextBrowser *days_21;
+    QHBoxLayout *horizontalLayout_5;
+    MyTextBrowser *days_22;
+    MyTextBrowser *days_23;
+    MyTextBrowser *days_24;
+    MyTextBrowser *days_25;
+    MyTextBrowser *days_26;
+    MyTextBrowser *days_27;
+    MyTextBrowser *days_28;
+    QHBoxLayout *horizontalLayout_6;
+    MyTextBrowser *days_29;
+    MyTextBrowser *days_30;
+    MyTextBrowser *days_31;
+    MyTextBrowser *days_32;
+    MyTextBrowser *days_33;
+    MyTextBrowser *days_34;
+    MyTextBrowser *days_35;
+    QHBoxLayout *horizontalLayout_7;
+    MyTextBrowser *days_36;
+    MyTextBrowser *days_37;
+    MyTextBrowser *days_38;
+    MyTextBrowser *days_39;
+    MyTextBrowser *days_40;
+    MyTextBrowser *days_41;
+    MyTextBrowser *days_42;
     QMenuBar *menuBar;
     QMenu *menu_F;
     QToolBar *toolBar;
@@ -103,17 +107,18 @@ public:
     {
         if (MomsCookClass->objectName().isEmpty())
             MomsCookClass->setObjectName(QString::fromUtf8("MomsCookClass"));
-        MomsCookClass->resize(1129, 1023);
+        MomsCookClass->resize(1190, 885);
+        MomsCookClass->setFocusPolicy(Qt::WheelFocus);
         action = new QAction(MomsCookClass);
         action->setObjectName(QString::fromUtf8("action"));
         centralWidget = new QWidget(MomsCookClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         lbVersion = new QLabel(centralWidget);
         lbVersion->setObjectName(QString::fromUtf8("lbVersion"));
-        lbVersion->setGeometry(QRect(20, 20, 56, 12));
+        lbVersion->setGeometry(QRect(40, 20, 56, 12));
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 60, 1111, 41));
+        layoutWidget->setGeometry(QRect(20, 60, 1121, 41));
         horizontalLayout_2 = new QHBoxLayout(layoutWidget);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -155,52 +160,155 @@ public:
 
         horizontalLayout_2->addWidget(textBrowser_7);
 
-        layoutWidget1 = new QWidget(centralWidget);
+        prevButton = new QPushButton(centralWidget);
+        prevButton->setObjectName(QString::fromUtf8("prevButton"));
+        prevButton->setGeometry(QRect(470, 10, 31, 31));
+        nextButton = new QPushButton(centralWidget);
+        nextButton->setObjectName(QString::fromUtf8("nextButton"));
+        nextButton->setGeometry(QRect(670, 10, 31, 31));
+        textMonth = new QTextBrowser(centralWidget);
+        textMonth->setObjectName(QString::fromUtf8("textMonth"));
+        textMonth->setGeometry(QRect(510, 10, 151, 31));
+        addMenuButton = new QPushButton(centralWidget);
+        addMenuButton->setObjectName(QString::fromUtf8("addMenuButton"));
+        addMenuButton->setGeometry(QRect(980, 20, 75, 23));
+        statisticsButton = new QPushButton(centralWidget);
+        statisticsButton->setObjectName(QString::fromUtf8("statisticsButton"));
+        statisticsButton->setGeometry(QRect(1070, 20, 75, 23));
+        scrollArea = new QScrollArea(centralWidget);
+        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        scrollArea->setGeometry(QRect(20, 110, 1141, 731));
+        scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 1122, 729));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(scrollAreaWidgetContents->sizePolicy().hasHeightForWidth());
+        scrollAreaWidgetContents->setSizePolicy(sizePolicy);
+        layoutWidget1 = new QWidget(scrollAreaWidgetContents);
         layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(10, 120, 1111, 861));
+        layoutWidget1->setGeometry(QRect(0, 0, 1121, 1228));
+        sizePolicy.setHeightForWidth(layoutWidget1->sizePolicy().hasHeightForWidth());
+        layoutWidget1->setSizePolicy(sizePolicy);
         verticalLayout = new QVBoxLayout(layoutWidget1);
-        verticalLayout->setSpacing(6);
+        verticalLayout->setSpacing(4);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        verticalLayout->setContentsMargins(4, 4, 4, 4);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setContentsMargins(-1, 4, 4, 4);
+        days_1 = new MyTextBrowser(layoutWidget1);
+        days_1->setObjectName(QString::fromUtf8("days_1"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(days_1->sizePolicy().hasHeightForWidth());
+        days_1->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(days_1);
+
+        days_2 = new MyTextBrowser(layoutWidget1);
+        days_2->setObjectName(QString::fromUtf8("days_2"));
+        sizePolicy1.setHeightForWidth(days_2->sizePolicy().hasHeightForWidth());
+        days_2->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(days_2);
+
+        days_3 = new MyTextBrowser(layoutWidget1);
+        days_3->setObjectName(QString::fromUtf8("days_3"));
+        sizePolicy1.setHeightForWidth(days_3->sizePolicy().hasHeightForWidth());
+        days_3->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(days_3);
+
+        days_4 = new MyTextBrowser(layoutWidget1);
+        days_4->setObjectName(QString::fromUtf8("days_4"));
+        sizePolicy1.setHeightForWidth(days_4->sizePolicy().hasHeightForWidth());
+        days_4->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(days_4);
+
+        days_5 = new MyTextBrowser(layoutWidget1);
+        days_5->setObjectName(QString::fromUtf8("days_5"));
+        sizePolicy1.setHeightForWidth(days_5->sizePolicy().hasHeightForWidth());
+        days_5->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(days_5);
+
+        days_6 = new MyTextBrowser(layoutWidget1);
+        days_6->setObjectName(QString::fromUtf8("days_6"));
+        sizePolicy1.setHeightForWidth(days_6->sizePolicy().hasHeightForWidth());
+        days_6->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(days_6);
+
+        days_7 = new MyTextBrowser(layoutWidget1);
+        days_7->setObjectName(QString::fromUtf8("days_7"));
+        sizePolicy1.setHeightForWidth(days_7->sizePolicy().hasHeightForWidth());
+        days_7->setSizePolicy(sizePolicy1);
+
+        horizontalLayout->addWidget(days_7);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(4, 4, 4, 4);
-        days00 = new QTextBrowser(layoutWidget1);
-        days00->setObjectName(QString::fromUtf8("days00"));
+        horizontalLayout_3->setContentsMargins(-1, 4, 4, 4);
+        days_8 = new MyTextBrowser(layoutWidget1);
+        days_8->setObjectName(QString::fromUtf8("days_8"));
+        sizePolicy1.setHeightForWidth(days_8->sizePolicy().hasHeightForWidth());
+        days_8->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_3->addWidget(days00);
+        horizontalLayout_3->addWidget(days_8);
 
-        days01 = new QTextBrowser(layoutWidget1);
-        days01->setObjectName(QString::fromUtf8("days01"));
+        days_9 = new MyTextBrowser(layoutWidget1);
+        days_9->setObjectName(QString::fromUtf8("days_9"));
+        sizePolicy1.setHeightForWidth(days_9->sizePolicy().hasHeightForWidth());
+        days_9->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_3->addWidget(days01);
+        horizontalLayout_3->addWidget(days_9);
 
-        days02 = new QTextBrowser(layoutWidget1);
-        days02->setObjectName(QString::fromUtf8("days02"));
+        days_10 = new MyTextBrowser(layoutWidget1);
+        days_10->setObjectName(QString::fromUtf8("days_10"));
+        sizePolicy1.setHeightForWidth(days_10->sizePolicy().hasHeightForWidth());
+        days_10->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_3->addWidget(days02);
+        horizontalLayout_3->addWidget(days_10);
 
-        days03 = new QTextBrowser(layoutWidget1);
-        days03->setObjectName(QString::fromUtf8("days03"));
+        days_11 = new MyTextBrowser(layoutWidget1);
+        days_11->setObjectName(QString::fromUtf8("days_11"));
+        sizePolicy1.setHeightForWidth(days_11->sizePolicy().hasHeightForWidth());
+        days_11->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_3->addWidget(days03);
+        horizontalLayout_3->addWidget(days_11);
 
-        days04 = new QTextBrowser(layoutWidget1);
-        days04->setObjectName(QString::fromUtf8("days04"));
+        days_12 = new MyTextBrowser(layoutWidget1);
+        days_12->setObjectName(QString::fromUtf8("days_12"));
+        sizePolicy1.setHeightForWidth(days_12->sizePolicy().hasHeightForWidth());
+        days_12->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_3->addWidget(days04);
+        horizontalLayout_3->addWidget(days_12);
 
-        days05 = new QTextBrowser(layoutWidget1);
-        days05->setObjectName(QString::fromUtf8("days05"));
+        days_13 = new MyTextBrowser(layoutWidget1);
+        days_13->setObjectName(QString::fromUtf8("days_13"));
+        sizePolicy1.setHeightForWidth(days_13->sizePolicy().hasHeightForWidth());
+        days_13->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_3->addWidget(days05);
+        horizontalLayout_3->addWidget(days_13);
 
-        days06 = new QTextBrowser(layoutWidget1);
-        days06->setObjectName(QString::fromUtf8("days06"));
+        days_14 = new MyTextBrowser(layoutWidget1);
+        days_14->setObjectName(QString::fromUtf8("days_14"));
+        sizePolicy1.setHeightForWidth(days_14->sizePolicy().hasHeightForWidth());
+        days_14->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_3->addWidget(days06);
+        horizontalLayout_3->addWidget(days_14);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
@@ -208,41 +316,55 @@ public:
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setSpacing(6);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        horizontalLayout_4->setContentsMargins(4, 4, 4, 4);
-        days07 = new QTextBrowser(layoutWidget1);
-        days07->setObjectName(QString::fromUtf8("days07"));
+        horizontalLayout_4->setContentsMargins(-1, 4, 4, 4);
+        days_15 = new MyTextBrowser(layoutWidget1);
+        days_15->setObjectName(QString::fromUtf8("days_15"));
+        sizePolicy1.setHeightForWidth(days_15->sizePolicy().hasHeightForWidth());
+        days_15->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_4->addWidget(days07);
+        horizontalLayout_4->addWidget(days_15);
 
-        days08 = new QTextBrowser(layoutWidget1);
-        days08->setObjectName(QString::fromUtf8("days08"));
+        days_16 = new MyTextBrowser(layoutWidget1);
+        days_16->setObjectName(QString::fromUtf8("days_16"));
+        sizePolicy1.setHeightForWidth(days_16->sizePolicy().hasHeightForWidth());
+        days_16->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_4->addWidget(days08);
+        horizontalLayout_4->addWidget(days_16);
 
-        days09 = new QTextBrowser(layoutWidget1);
-        days09->setObjectName(QString::fromUtf8("days09"));
+        days_17 = new MyTextBrowser(layoutWidget1);
+        days_17->setObjectName(QString::fromUtf8("days_17"));
+        sizePolicy1.setHeightForWidth(days_17->sizePolicy().hasHeightForWidth());
+        days_17->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_4->addWidget(days09);
+        horizontalLayout_4->addWidget(days_17);
 
-        days10 = new QTextBrowser(layoutWidget1);
-        days10->setObjectName(QString::fromUtf8("days10"));
+        days_18 = new MyTextBrowser(layoutWidget1);
+        days_18->setObjectName(QString::fromUtf8("days_18"));
+        sizePolicy1.setHeightForWidth(days_18->sizePolicy().hasHeightForWidth());
+        days_18->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_4->addWidget(days10);
+        horizontalLayout_4->addWidget(days_18);
 
-        days11 = new QTextBrowser(layoutWidget1);
-        days11->setObjectName(QString::fromUtf8("days11"));
+        days_19 = new MyTextBrowser(layoutWidget1);
+        days_19->setObjectName(QString::fromUtf8("days_19"));
+        sizePolicy1.setHeightForWidth(days_19->sizePolicy().hasHeightForWidth());
+        days_19->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_4->addWidget(days11);
+        horizontalLayout_4->addWidget(days_19);
 
-        days12 = new QTextBrowser(layoutWidget1);
-        days12->setObjectName(QString::fromUtf8("days12"));
+        days_20 = new MyTextBrowser(layoutWidget1);
+        days_20->setObjectName(QString::fromUtf8("days_20"));
+        sizePolicy1.setHeightForWidth(days_20->sizePolicy().hasHeightForWidth());
+        days_20->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_4->addWidget(days12);
+        horizontalLayout_4->addWidget(days_20);
 
-        days13 = new QTextBrowser(layoutWidget1);
-        days13->setObjectName(QString::fromUtf8("days13"));
+        days_21 = new MyTextBrowser(layoutWidget1);
+        days_21->setObjectName(QString::fromUtf8("days_21"));
+        sizePolicy1.setHeightForWidth(days_21->sizePolicy().hasHeightForWidth());
+        days_21->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_4->addWidget(days13);
+        horizontalLayout_4->addWidget(days_21);
 
 
         verticalLayout->addLayout(horizontalLayout_4);
@@ -250,41 +372,55 @@ public:
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setSpacing(6);
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
-        horizontalLayout_5->setContentsMargins(4, 4, 4, 4);
-        days14 = new QTextBrowser(layoutWidget1);
-        days14->setObjectName(QString::fromUtf8("days14"));
+        horizontalLayout_5->setContentsMargins(-1, 4, 4, 4);
+        days_22 = new MyTextBrowser(layoutWidget1);
+        days_22->setObjectName(QString::fromUtf8("days_22"));
+        sizePolicy1.setHeightForWidth(days_22->sizePolicy().hasHeightForWidth());
+        days_22->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_5->addWidget(days14);
+        horizontalLayout_5->addWidget(days_22);
 
-        days15 = new QTextBrowser(layoutWidget1);
-        days15->setObjectName(QString::fromUtf8("days15"));
+        days_23 = new MyTextBrowser(layoutWidget1);
+        days_23->setObjectName(QString::fromUtf8("days_23"));
+        sizePolicy1.setHeightForWidth(days_23->sizePolicy().hasHeightForWidth());
+        days_23->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_5->addWidget(days15);
+        horizontalLayout_5->addWidget(days_23);
 
-        days16 = new QTextBrowser(layoutWidget1);
-        days16->setObjectName(QString::fromUtf8("days16"));
+        days_24 = new MyTextBrowser(layoutWidget1);
+        days_24->setObjectName(QString::fromUtf8("days_24"));
+        sizePolicy1.setHeightForWidth(days_24->sizePolicy().hasHeightForWidth());
+        days_24->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_5->addWidget(days16);
+        horizontalLayout_5->addWidget(days_24);
 
-        days17 = new QTextBrowser(layoutWidget1);
-        days17->setObjectName(QString::fromUtf8("days17"));
+        days_25 = new MyTextBrowser(layoutWidget1);
+        days_25->setObjectName(QString::fromUtf8("days_25"));
+        sizePolicy1.setHeightForWidth(days_25->sizePolicy().hasHeightForWidth());
+        days_25->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_5->addWidget(days17);
+        horizontalLayout_5->addWidget(days_25);
 
-        days18 = new QTextBrowser(layoutWidget1);
-        days18->setObjectName(QString::fromUtf8("days18"));
+        days_26 = new MyTextBrowser(layoutWidget1);
+        days_26->setObjectName(QString::fromUtf8("days_26"));
+        sizePolicy1.setHeightForWidth(days_26->sizePolicy().hasHeightForWidth());
+        days_26->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_5->addWidget(days18);
+        horizontalLayout_5->addWidget(days_26);
 
-        days19 = new QTextBrowser(layoutWidget1);
-        days19->setObjectName(QString::fromUtf8("days19"));
+        days_27 = new MyTextBrowser(layoutWidget1);
+        days_27->setObjectName(QString::fromUtf8("days_27"));
+        sizePolicy1.setHeightForWidth(days_27->sizePolicy().hasHeightForWidth());
+        days_27->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_5->addWidget(days19);
+        horizontalLayout_5->addWidget(days_27);
 
-        days20 = new QTextBrowser(layoutWidget1);
-        days20->setObjectName(QString::fromUtf8("days20"));
+        days_28 = new MyTextBrowser(layoutWidget1);
+        days_28->setObjectName(QString::fromUtf8("days_28"));
+        sizePolicy1.setHeightForWidth(days_28->sizePolicy().hasHeightForWidth());
+        days_28->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_5->addWidget(days20);
+        horizontalLayout_5->addWidget(days_28);
 
 
         verticalLayout->addLayout(horizontalLayout_5);
@@ -292,41 +428,55 @@ public:
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setSpacing(6);
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
-        horizontalLayout_6->setContentsMargins(4, 4, 4, 4);
-        days21 = new QTextBrowser(layoutWidget1);
-        days21->setObjectName(QString::fromUtf8("days21"));
+        horizontalLayout_6->setContentsMargins(-1, 4, 4, 4);
+        days_29 = new MyTextBrowser(layoutWidget1);
+        days_29->setObjectName(QString::fromUtf8("days_29"));
+        sizePolicy1.setHeightForWidth(days_29->sizePolicy().hasHeightForWidth());
+        days_29->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_6->addWidget(days21);
+        horizontalLayout_6->addWidget(days_29);
 
-        days22 = new QTextBrowser(layoutWidget1);
-        days22->setObjectName(QString::fromUtf8("days22"));
+        days_30 = new MyTextBrowser(layoutWidget1);
+        days_30->setObjectName(QString::fromUtf8("days_30"));
+        sizePolicy1.setHeightForWidth(days_30->sizePolicy().hasHeightForWidth());
+        days_30->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_6->addWidget(days22);
+        horizontalLayout_6->addWidget(days_30);
 
-        days23 = new QTextBrowser(layoutWidget1);
-        days23->setObjectName(QString::fromUtf8("days23"));
+        days_31 = new MyTextBrowser(layoutWidget1);
+        days_31->setObjectName(QString::fromUtf8("days_31"));
+        sizePolicy1.setHeightForWidth(days_31->sizePolicy().hasHeightForWidth());
+        days_31->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_6->addWidget(days23);
+        horizontalLayout_6->addWidget(days_31);
 
-        days24 = new QTextBrowser(layoutWidget1);
-        days24->setObjectName(QString::fromUtf8("days24"));
+        days_32 = new MyTextBrowser(layoutWidget1);
+        days_32->setObjectName(QString::fromUtf8("days_32"));
+        sizePolicy1.setHeightForWidth(days_32->sizePolicy().hasHeightForWidth());
+        days_32->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_6->addWidget(days24);
+        horizontalLayout_6->addWidget(days_32);
 
-        days25 = new QTextBrowser(layoutWidget1);
-        days25->setObjectName(QString::fromUtf8("days25"));
+        days_33 = new MyTextBrowser(layoutWidget1);
+        days_33->setObjectName(QString::fromUtf8("days_33"));
+        sizePolicy1.setHeightForWidth(days_33->sizePolicy().hasHeightForWidth());
+        days_33->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_6->addWidget(days25);
+        horizontalLayout_6->addWidget(days_33);
 
-        days26 = new QTextBrowser(layoutWidget1);
-        days26->setObjectName(QString::fromUtf8("days26"));
+        days_34 = new MyTextBrowser(layoutWidget1);
+        days_34->setObjectName(QString::fromUtf8("days_34"));
+        sizePolicy1.setHeightForWidth(days_34->sizePolicy().hasHeightForWidth());
+        days_34->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_6->addWidget(days26);
+        horizontalLayout_6->addWidget(days_34);
 
-        days27 = new QTextBrowser(layoutWidget1);
-        days27->setObjectName(QString::fromUtf8("days27"));
+        days_35 = new MyTextBrowser(layoutWidget1);
+        days_35->setObjectName(QString::fromUtf8("days_35"));
+        sizePolicy1.setHeightForWidth(days_35->sizePolicy().hasHeightForWidth());
+        days_35->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_6->addWidget(days27);
+        horizontalLayout_6->addWidget(days_35);
 
 
         verticalLayout->addLayout(horizontalLayout_6);
@@ -334,106 +484,64 @@ public:
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setSpacing(6);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        horizontalLayout_7->setContentsMargins(4, 4, 4, 4);
-        days28 = new QTextBrowser(layoutWidget1);
-        days28->setObjectName(QString::fromUtf8("days28"));
+        horizontalLayout_7->setContentsMargins(-1, 4, 4, 4);
+        days_36 = new MyTextBrowser(layoutWidget1);
+        days_36->setObjectName(QString::fromUtf8("days_36"));
+        sizePolicy1.setHeightForWidth(days_36->sizePolicy().hasHeightForWidth());
+        days_36->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_7->addWidget(days28);
+        horizontalLayout_7->addWidget(days_36);
 
-        days29 = new QTextBrowser(layoutWidget1);
-        days29->setObjectName(QString::fromUtf8("days29"));
+        days_37 = new MyTextBrowser(layoutWidget1);
+        days_37->setObjectName(QString::fromUtf8("days_37"));
+        sizePolicy1.setHeightForWidth(days_37->sizePolicy().hasHeightForWidth());
+        days_37->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_7->addWidget(days29);
+        horizontalLayout_7->addWidget(days_37);
 
-        days30 = new QTextBrowser(layoutWidget1);
-        days30->setObjectName(QString::fromUtf8("days30"));
+        days_38 = new MyTextBrowser(layoutWidget1);
+        days_38->setObjectName(QString::fromUtf8("days_38"));
+        sizePolicy1.setHeightForWidth(days_38->sizePolicy().hasHeightForWidth());
+        days_38->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_7->addWidget(days30);
+        horizontalLayout_7->addWidget(days_38);
 
-        days31 = new QTextBrowser(layoutWidget1);
-        days31->setObjectName(QString::fromUtf8("days31"));
+        days_39 = new MyTextBrowser(layoutWidget1);
+        days_39->setObjectName(QString::fromUtf8("days_39"));
+        sizePolicy1.setHeightForWidth(days_39->sizePolicy().hasHeightForWidth());
+        days_39->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_7->addWidget(days31);
+        horizontalLayout_7->addWidget(days_39);
 
-        days32 = new QTextBrowser(layoutWidget1);
-        days32->setObjectName(QString::fromUtf8("days32"));
+        days_40 = new MyTextBrowser(layoutWidget1);
+        days_40->setObjectName(QString::fromUtf8("days_40"));
+        sizePolicy1.setHeightForWidth(days_40->sizePolicy().hasHeightForWidth());
+        days_40->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_7->addWidget(days32);
+        horizontalLayout_7->addWidget(days_40);
 
-        days33 = new QTextBrowser(layoutWidget1);
-        days33->setObjectName(QString::fromUtf8("days33"));
+        days_41 = new MyTextBrowser(layoutWidget1);
+        days_41->setObjectName(QString::fromUtf8("days_41"));
+        sizePolicy1.setHeightForWidth(days_41->sizePolicy().hasHeightForWidth());
+        days_41->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_7->addWidget(days33);
+        horizontalLayout_7->addWidget(days_41);
 
-        days34 = new QTextBrowser(layoutWidget1);
-        days34->setObjectName(QString::fromUtf8("days34"));
+        days_42 = new MyTextBrowser(layoutWidget1);
+        days_42->setObjectName(QString::fromUtf8("days_42"));
+        sizePolicy1.setHeightForWidth(days_42->sizePolicy().hasHeightForWidth());
+        days_42->setSizePolicy(sizePolicy1);
 
-        horizontalLayout_7->addWidget(days34);
+        horizontalLayout_7->addWidget(days_42);
 
 
         verticalLayout->addLayout(horizontalLayout_7);
 
-        horizontalLayout_9 = new QHBoxLayout();
-        horizontalLayout_9->setSpacing(6);
-        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
-        horizontalLayout_9->setContentsMargins(4, 4, 4, 4);
-        days35 = new QTextBrowser(layoutWidget1);
-        days35->setObjectName(QString::fromUtf8("days35"));
-
-        horizontalLayout_9->addWidget(days35);
-
-        days36 = new QTextBrowser(layoutWidget1);
-        days36->setObjectName(QString::fromUtf8("days36"));
-
-        horizontalLayout_9->addWidget(days36);
-
-        days37 = new QTextBrowser(layoutWidget1);
-        days37->setObjectName(QString::fromUtf8("days37"));
-
-        horizontalLayout_9->addWidget(days37);
-
-        days38 = new QTextBrowser(layoutWidget1);
-        days38->setObjectName(QString::fromUtf8("days38"));
-
-        horizontalLayout_9->addWidget(days38);
-
-        days39 = new QTextBrowser(layoutWidget1);
-        days39->setObjectName(QString::fromUtf8("days39"));
-
-        horizontalLayout_9->addWidget(days39);
-
-        days40 = new QTextBrowser(layoutWidget1);
-        days40->setObjectName(QString::fromUtf8("days40"));
-
-        horizontalLayout_9->addWidget(days40);
-
-        days41 = new QTextBrowser(layoutWidget1);
-        days41->setObjectName(QString::fromUtf8("days41"));
-
-        horizontalLayout_9->addWidget(days41);
-
-
-        verticalLayout->addLayout(horizontalLayout_9);
-
-        prevButton = new QPushButton(centralWidget);
-        prevButton->setObjectName(QString::fromUtf8("prevButton"));
-        prevButton->setGeometry(QRect(450, 10, 31, 31));
-        nextButton = new QPushButton(centralWidget);
-        nextButton->setObjectName(QString::fromUtf8("nextButton"));
-        nextButton->setGeometry(QRect(650, 10, 31, 31));
-        textMonth = new QTextBrowser(centralWidget);
-        textMonth->setObjectName(QString::fromUtf8("textMonth"));
-        textMonth->setGeometry(QRect(490, 10, 151, 31));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(960, 20, 75, 23));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(1050, 20, 75, 23));
+        scrollArea->setWidget(scrollAreaWidgetContents);
         MomsCookClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MomsCookClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1129, 21));
+        menuBar->setGeometry(QRect(0, 0, 1190, 21));
         menu_F = new QMenu(menuBar);
         menu_F->setObjectName(QString::fromUtf8("menu_F"));
         MomsCookClass->setMenuBar(menuBar);
@@ -494,8 +602,8 @@ public:
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:14pt; font-weight:600;\">\354\235\274</span></p></body></html>", nullptr));
         prevButton->setText(QCoreApplication::translate("MomsCookClass", "\342\227\200", nullptr));
         nextButton->setText(QCoreApplication::translate("MomsCookClass", "\342\226\266", nullptr));
-        pushButton->setText(QCoreApplication::translate("MomsCookClass", "\353\251\224\353\211\264 \354\266\224\352\260\200", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MomsCookClass", "\355\206\265\352\263\204", nullptr));
+        addMenuButton->setText(QCoreApplication::translate("MomsCookClass", "\353\251\224\353\211\264 \354\266\224\352\260\200", nullptr));
+        statisticsButton->setText(QCoreApplication::translate("MomsCookClass", "\355\206\265\352\263\204", nullptr));
         menu_F->setTitle(QCoreApplication::translate("MomsCookClass", "\355\214\214\354\235\274(F)", nullptr));
     } // retranslateUi
 

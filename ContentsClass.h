@@ -5,6 +5,8 @@
 #include <mysql.h>
 #include "ui_ContentsClass.h"
 
+#define CONTENTS_TYPE 3
+
 using namespace std;
 
 class Calendar;
@@ -19,8 +21,8 @@ public:
 	~ContentsClass();
 	void setDateIndex(unsigned int idx);
 	void setContents(Contents* contents);
-	bool setSide(const std::string& side);
-	void setContentsText(string& contentsText);
+	bool setSide(const QString& side);
+	void setContentsText(QString& contentsText);
 	void setContentsText(Calendar* c);
 	void setMYSQL(MYSQL* conn);
 	void resetSavedDishes();
@@ -35,8 +37,9 @@ private slots:
 	void saveDish();
 private:
 	Ui::ContentsClass ui;
-	AddContentsClass* addContents;
+	QList <QListWidget*> listViews;
 
+	AddContentsClass* addContents;
 	MYSQL* conn;
 	MYSQL_RES* res;
 	MYSQL_ROW row;
@@ -46,7 +49,7 @@ private:
 
 	bool updateFlag;
 
-	string currRice;
-	string currSoup;
-	string currSide[3];
+	QString currRice;
+	QString currSoup;
+	QString currSide[3];
 };

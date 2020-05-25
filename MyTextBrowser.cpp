@@ -64,7 +64,7 @@ void MyTextBrowser::showContents(const QDate& date) {
 	selectedContents->getDateTextBrowser()->setText(QString::fromLocal8Bit(strDate.c_str()));
 	Contents* content = calendar->getContent(date.day() - 1);
 
-	selectedContents->getContentsTextBrowser()->setText(QString::fromLocal8Bit(content->getContentsString().c_str()));
+	selectedContents->getContentsTextBrowser()->setText(content->getContentsString());
 	selectedContents->show();
 }
 void MyTextBrowser::selectDay() {

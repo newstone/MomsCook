@@ -11,6 +11,10 @@ ContentsClass::ContentsClass(QWidget* parent)
 	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false), addContents(nullptr){
 	ui.setupUi(this);
 
+	listViews.append(this->findChild<QListWidget*>("listWidget_1"));
+	listViews.append(this->findChild<QListWidget*>("listWidget_2"));
+	listViews.append(this->findChild<QListWidget*>("listWidget_3"));
+
 	conn = mysql_init(nullptr);
 	if (!conn) {
 		assert(false);
@@ -18,15 +22,17 @@ ContentsClass::ContentsClass(QWidget* parent)
 	conn = mysql_real_connect(conn, "localhost", "root", "Wja896523", "dish", 3306, (char*)NULL, 0);
 	if (conn) {
 		std::cout << "Connect Success!" << std::endl;
+		mysql_query(conn, "set names utf-8");
 	}
 	else {
 		std::cout << "Connect Fail!" << std::endl;
 	}
 
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(saveDish()));
+
 	for (int i = 0; i < CONTENTS_TYPE; ++i) {
 		currSide[i] = "";
-		QObject::connect(ui.listViews[i], SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(clickedDish()));
+		QObject::connect(listViews[i], SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(clickedDish()));
 	}
 }
 
@@ -57,12 +63,12 @@ void ContentsClass::loadData() {
 	MYSQL_ROW sql_row;
 
 	for (int i = 0; i < 3; ++i) {
-		ui.listViews[i]->clear();
+		listViews[i]->clear();
 	}
 
 	sql_result = mysql_store_result(conn);
 	while ((sql_row = mysql_fetch_row(sql_result)) != nullptr) {
-		ui.listViews[atoi(sql_row[1])]->addItem(sql_row[0]);
+		listViews[atoi(sql_row[1])]->addItem(QString::fromUtf8(sql_row[0]));
 	}
 		
 	mysql_free_result(sql_result);
@@ -75,7 +81,7 @@ bool ContentsClass::isUpdated() {
 	}
 	return false;
 }
-bool ContentsClass::setSide(const string& side) {
+bool ContentsClass::setSide(const QString& side) {
 	for (unsigned int i = 0; i < 3; ++i) {
 		if (currSide[i] == "") {
 			currSide[i] = side;
@@ -85,21 +91,21 @@ bool ContentsClass::setSide(const string& side) {
 	return false;
 }
 
-void ContentsClass::setContentsText(string& contentsText) {
-	contentsText += "====================\n";
-	contentsText += "밥: ";
+void ContentsClass::setContentsText(QString& contentsText) {
+	contentsText += "\n";
+	contentsText += QString::fromLocal8Bit("밥: ");
 	contentsText += currRice;
 	contentsText += "\n";
-	contentsText += "국: ";
+	contentsText += QString::fromLocal8Bit("국: ");
 	contentsText += currSoup;
 	contentsText += "\n";
-	contentsText += "반찬1: ";
+	contentsText += QString::fromLocal8Bit("반찬1: ");
 	contentsText += currSide[0];
 	contentsText += "\n";
-	contentsText += "반찬2: ";
+	contentsText += QString::fromLocal8Bit("반찬2: ");
 	contentsText += currSide[1];
 	contentsText += "\n";
-	contentsText += "반찬3: ";
+	contentsText += QString::fromLocal8Bit("반찬3: ");
 	contentsText += currSide[2];
 	contentsText += "\n";
 }
@@ -125,23 +131,26 @@ void ContentsClass::clickedDish() {
 	switch (type)
 	{
 	case DISH_TYPE::RICE:
-		currRice = ui.listViews[ui.tabWidget->currentIndex()]->currentItem()->text().toStdString();
+		currRice = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
 		break;
 	case DISH_TYPE::SOUP:
-		currSoup = ui.listViews[ui.tabWidget->currentIndex()]->currentItem()->text().toStdString();
+		currSoup = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
 		break;
 	default:
-		setSide(ui.listViews[ui.tabWidget->currentIndex()]->currentItem()->text().toStdString());
+		setSide(listViews[ui.tabWidget->currentIndex()]->currentItem()->text());
 		break;
 	}
-	string contentsText = "";
+	QString contentsText = "";
 	setContentsText(contentsText);
-	ui.contentsTextBrowser->setText(QString::fromLocal8Bit(contentsText.c_str()));
+	ui.contentsTextBrowser->setText(contentsText);
 	ui.contentsTextBrowser->update();
 }
 
 void ContentsClass::saveDish() {
 	QDate date = calendar->getDate();
+
+	if (currRice == "")
+		assert(false);
 
 	contents[dateIndex].setDish(DISH_TYPE::RICE, currRice);
 	contents[dateIndex].setDish(DISH_TYPE::SOUP, currSoup);
@@ -163,14 +172,14 @@ void ContentsClass::saveDish() {
 	sql += to_string(date.day());
 	sql += "', '";
 
-	sql += currRice;
+	sql += currRice.toStdString();
 	sql += "', '";
 
-	sql += currSoup;
+	sql += currSoup.toStdString();
 	sql += "', ";
 	for (unsigned int i = 0; i < 3; ++i) {
 		sql += "'";
-		sql += currSide[i];
+		sql += currSide[i].toStdString();
 		sql += "'";
 		if (i < 2) {
 			sql += ", ";
@@ -186,15 +195,15 @@ void ContentsClass::saveDish() {
 	}
 	else {
 		sql = "UPDATE menu SET rice = \'";
-		sql += currRice;
+		sql += currRice.toStdString();
 		sql += "\', soup = \'";
-		sql += currSoup;
+		sql += currSoup.toStdString();
 		sql += "\', side1 = \'";
-		sql += currSide[0];
+		sql += currSide[0].toStdString();
 		sql += "\', side2 = \'";
-		sql += currSide[1];
+		sql += currSide[1].toStdString();
 		sql += "\', side3 = \'";
-		sql += currSide[2];
+		sql += currSide[2].toStdString();
 		sql += "\' WHERE date = \'";
 		sql += to_string(date.year());
 		sql += "-";

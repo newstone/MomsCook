@@ -21,6 +21,8 @@ public:
 	void updateFoodList();
 private:
 	Ui::AddContentsClass ui;
+	QList <QListWidget*> listViews;
+
 	ContentsClass* contentsClass;
 	MYSQL* conn;
 

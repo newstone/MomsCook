@@ -11,8 +11,8 @@ public:
 	~Contents();
 
 	bool isInitialized();
-	bool setDish(DISH_TYPE type, const string& dish);
-	string getContentsString();
+	bool setDish(DISH_TYPE type, const QString& dish);
+	QString getContentsString();
 	void reset();
 private:
 	string selectedDay;
