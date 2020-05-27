@@ -26,6 +26,9 @@ MomsCook::MomsCook(QWidget *parent)
 	
 	addContents = new AddContentsClass();
 	addContents->hide();
+	statisticsClass = new StatisticsClass();
+	statisticsClass->hide();
+
 	selectedContents = addContents->getContentsClass();
 	selectedContents->setContentsText(&calendar);
 	connect(ui.prevButton, &QPushButton::clicked, [=]() {
@@ -52,6 +55,12 @@ MomsCook::~MomsCook() {
 		delete addContents;
 	if (conn)
 		mysql_close(conn);
+	if (addContents) {
+		delete addContents;
+	}
+	if (statisticsClass) {
+		delete statisticsClass;
+	}
 }
 
 void MomsCook::init() {
@@ -82,8 +91,13 @@ void MomsCook::initDatabase() {
 }
 void MomsCook::openAddContentsView() {
 	addContents->setVisible(true);
+	addContents->activateWindow();
+	addContents->raise();
 }
 void MomsCook::openStatisticsView() {
+	statisticsClass->setVisible(true);
+	statisticsClass->activateWindow();
+	statisticsClass->raise();
 }
 void MomsCook::handleButton(bool flag) {
 	int month = calendar.getDate().month();

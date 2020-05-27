@@ -93,7 +93,7 @@ bool ContentsClass::setSide(const QString& side) {
 
 void ContentsClass::setContentsText(QString& contentsText) {
 	contentsText += "\n";
-	contentsText += QString::fromLocal8Bit("¹ä: ");
+	contentsText += QString::fromLocal8Bit("Æ¯½Ä: ");
 	contentsText += currRice;
 	contentsText += "\n";
 	contentsText += QString::fromLocal8Bit("±¹: ");

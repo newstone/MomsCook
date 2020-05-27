@@ -1,16 +1,2 @@
-﻿  uic MomsCook.ui
-  moc ContentsClass.h
-   C:\Users\newst\source\repos\MomsCook\MomsCook.ui: Warning: The name 'layoutWidget' (QWidget) is already in use, defaulting to 'layoutWidget1'.
-  AddContentsClass.cpp
-  Contents.cpp
-  ContentsClass.cpp
-  Dish.cpp
-  MomsCook.cpp
-  MyCalendar.cpp
-  MyTextBrowser.cpp
-  main.cpp
-C:\Users\newst\source\repos\MomsCook\AddContentsClass.cpp(49,11): warning C4129: ',': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-  moc_AddContentsClass.cpp
-  moc_ContentsClass.cpp
-  moc_MomsCook.cpp
+﻿  MomsCook.cpp
   MomsCook.vcxproj -> C:\Users\newst\source\repos\MomsCook\x64\Release\MomsCook.exe

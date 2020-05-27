@@ -91,7 +91,7 @@ public:
         retranslateUi(ContentsClass);
         QObject::connect(pushButton_2, SIGNAL(clicked()), ContentsClass, SLOT(close()));
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ContentsClass);
@@ -102,7 +102,7 @@ public:
         ContentsClass->setWindowTitle(QCoreApplication::translate("ContentsClass", "ContentsClass", nullptr));
         pushButton->setText(QCoreApplication::translate("ContentsClass", "\354\240\200\354\236\245", nullptr));
         pushButton_2->setText(QCoreApplication::translate("ContentsClass", "\353\202\230\352\260\200\352\270\260", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_1), QCoreApplication::translate("ContentsClass", "\353\260\245", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_1), QCoreApplication::translate("ContentsClass", "\355\212\271\354\213\235", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("ContentsClass", "\352\265\255", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("ContentsClass", "\353\260\230\354\260\254", nullptr));
     } // retranslateUi

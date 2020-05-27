@@ -5,7 +5,7 @@
 #include "MyCalendar.h"
 #include "AddContentsClass.h"
 #include "MyTextBrowser.h"
-
+#include "StatisticsClass.h"
 
 class MomsCook : public QMainWindow
 {
@@ -34,6 +34,7 @@ private:
 	Calendar calendar;
 	ContentsClass* selectedContents;
 	AddContentsClass* addContents;
+	StatisticsClass* statisticsClass;
 
 	MYSQL* conn;
 	MYSQL_RES* res;

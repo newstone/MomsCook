@@ -45,7 +45,7 @@ QString Contents::getContentsString() {
 		switch (i)
 		{
 		case DISH_TYPE::RICE:
-			contents += QString::fromLocal8Bit("¹ä: ");
+			contents += QString::fromLocal8Bit("Æ¯½Ä: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
 			break;

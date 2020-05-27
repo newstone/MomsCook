@@ -76,11 +76,10 @@ void Calendar::reloadContents(const QDate& date) {
 }
 
 void Calendar::makeCalendar(Ui::MomsCookClass& ui, QList<MyTextBrowser*>& days, const QDate& date) {
-
-	QString m(to_string(date.month()).c_str());
+	string textMonth = to_string(date.year()) + "." + to_string(date.month());
 	ui.textMonth->setFontPointSize(13);
 	ui.textMonth->setFontWeight(QFont::Bold);
-	ui.textMonth->setText(m);
+	ui.textMonth->setText(QString::fromStdString(textMonth));
 	ui.textMonth->setAlignment(Qt::AlignCenter);
 	int startDate = date.dayOfWeek();
 	int currDate = 1;

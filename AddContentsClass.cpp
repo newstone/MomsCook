@@ -14,7 +14,7 @@ AddContentsClass::AddContentsClass(QWidget *parent)
 	listViews.append(this->findChild<QListWidget*>("listWidget_3"));
 	connect(ui.pushButton, &QPushButton::clicked, [=]() {
 		pushSaveButton();
-		});
+	});
 	connect(ui.radioButton, &QPushButton::clicked, [=]() {
 		radioFunction(0);
 	});

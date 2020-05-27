@@ -102,6 +102,7 @@
     <ClCompile Include="MyCalendar.cpp" />
     <ClCompile Include="MyTextBrowser.cpp" />
     <ClCompile Include="Nutrient.cpp" />
+    <ClCompile Include="StatisticsClass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MomsCook.h" />
@@ -110,11 +111,13 @@
     <QtUic Include="AddContentsClass.ui" />
     <QtUic Include="ContentsClass.ui" />
     <QtUic Include="MomsCook.ui" />
+    <QtUic Include="StatisticsClass.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="MomsCook.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="StatisticsClass.h" />
     <QtMoc Include="AddContentsClass.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Contents.h" />
