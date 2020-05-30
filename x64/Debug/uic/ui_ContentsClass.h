@@ -12,8 +12,10 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QWidget>
@@ -36,6 +38,14 @@ public:
     QListWidget *listWidget_2;
     QWidget *tab_3;
     QListWidget *listWidget_3;
+    QWidget *layoutWidget1;
+    QHBoxLayout *horizontalLayout_2;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_2;
+    QRadioButton *radioButton_3;
+    QPushButton *searchButton;
+    QLineEdit *searchLine;
+    QPushButton *resetButton;
 
     void setupUi(QWidget *ContentsClass)
     {
@@ -44,10 +54,10 @@ public:
         ContentsClass->resize(667, 398);
         contentsTextBrowser = new QTextBrowser(ContentsClass);
         contentsTextBrowser->setObjectName(QString::fromUtf8("contentsTextBrowser"));
-        contentsTextBrowser->setGeometry(QRect(10, 50, 191, 331));
+        contentsTextBrowser->setGeometry(QRect(10, 50, 191, 291));
         layoutWidget = new QWidget(ContentsClass);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(490, 360, 158, 25));
+        layoutWidget->setGeometry(QRect(500, 360, 158, 25));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -68,7 +78,7 @@ public:
         dateTextBrowser->setGeometry(QRect(10, 10, 191, 31));
         tabWidget = new QTabWidget(ContentsClass);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(210, 10, 451, 331));
+        tabWidget->setGeometry(QRect(210, 80, 451, 261));
         tab_1 = new QWidget();
         tab_1->setObjectName(QString::fromUtf8("tab_1"));
         listWidget_1 = new QListWidget(tab_1);
@@ -87,6 +97,38 @@ public:
         listWidget_3->setObjectName(QString::fromUtf8("listWidget_3"));
         listWidget_3->setGeometry(QRect(0, 0, 451, 311));
         tabWidget->addTab(tab_3, QString());
+        layoutWidget1 = new QWidget(ContentsClass);
+        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(210, 50, 231, 18));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
+        horizontalLayout_2->setSpacing(3);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        radioButton = new QRadioButton(layoutWidget1);
+        radioButton->setObjectName(QString::fromUtf8("radioButton"));
+
+        horizontalLayout_2->addWidget(radioButton);
+
+        radioButton_2 = new QRadioButton(layoutWidget1);
+        radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
+
+        horizontalLayout_2->addWidget(radioButton_2);
+
+        radioButton_3 = new QRadioButton(layoutWidget1);
+        radioButton_3->setObjectName(QString::fromUtf8("radioButton_3"));
+
+        horizontalLayout_2->addWidget(radioButton_3);
+
+        searchButton = new QPushButton(ContentsClass);
+        searchButton->setObjectName(QString::fromUtf8("searchButton"));
+        searchButton->setGeometry(QRect(570, 10, 75, 31));
+        searchLine = new QLineEdit(ContentsClass);
+        searchLine->setObjectName(QString::fromUtf8("searchLine"));
+        searchLine->setGeometry(QRect(210, 10, 351, 31));
+        resetButton = new QPushButton(ContentsClass);
+        resetButton->setObjectName(QString::fromUtf8("resetButton"));
+        resetButton->setGeometry(QRect(120, 360, 75, 23));
 
         retranslateUi(ContentsClass);
         QObject::connect(pushButton_2, SIGNAL(clicked()), ContentsClass, SLOT(close()));
@@ -102,9 +144,14 @@ public:
         ContentsClass->setWindowTitle(QCoreApplication::translate("ContentsClass", "ContentsClass", nullptr));
         pushButton->setText(QCoreApplication::translate("ContentsClass", "\354\240\200\354\236\245", nullptr));
         pushButton_2->setText(QCoreApplication::translate("ContentsClass", "\353\202\230\352\260\200\352\270\260", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_1), QCoreApplication::translate("ContentsClass", "\355\212\271\354\213\235", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_1), QCoreApplication::translate("ContentsClass", "\353\260\245", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("ContentsClass", "\352\265\255", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("ContentsClass", "\353\260\230\354\260\254", nullptr));
+        radioButton->setText(QCoreApplication::translate("ContentsClass", "\355\212\271\354\213\235", nullptr));
+        radioButton_2->setText(QCoreApplication::translate("ContentsClass", "\352\265\255", nullptr));
+        radioButton_3->setText(QCoreApplication::translate("ContentsClass", "\353\260\230\354\260\254", nullptr));
+        searchButton->setText(QCoreApplication::translate("ContentsClass", "\352\262\200\354\203\211", nullptr));
+        resetButton->setText(QCoreApplication::translate("ContentsClass", "\354\264\210\352\270\260\355\231\224", nullptr));
     } // retranslateUi
 
 };

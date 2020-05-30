@@ -8,26 +8,34 @@
 #pragma comment(lib, "libmysql.lib")
 
 ContentsClass::ContentsClass(QWidget* parent)
-	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false), addContents(nullptr){
+	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false), addContents(nullptr), radioBtnIndex(-1){
 	ui.setupUi(this);
 
 	listViews.append(this->findChild<QListWidget*>("listWidget_1"));
 	listViews.append(this->findChild<QListWidget*>("listWidget_2"));
 	listViews.append(this->findChild<QListWidget*>("listWidget_3"));
 
-	conn = mysql_init(nullptr);
-	if (!conn) {
-		assert(false);
-	}
-	conn = mysql_real_connect(conn, "localhost", "root", "Wja896523", "dish", 3306, (char*)NULL, 0);
-	if (conn) {
-		std::cout << "Connect Success!" << std::endl;
-		mysql_query(conn, "set names utf-8");
-	}
-	else {
-		std::cout << "Connect Fail!" << std::endl;
-	}
-
+	connect(ui.radioButton, &QPushButton::clicked, [=]() {
+		radioFunction(0);
+		});
+	connect(ui.radioButton_2, &QPushButton::clicked, [=]() {
+		radioFunction(1);
+		});
+	connect(ui.radioButton_3, &QPushButton::clicked, [=]() {
+		radioFunction(2);
+		});
+	connect(ui.resetButton, &QPushButton::clicked, [=]() {
+		currRice = "";
+		currSoup = "";
+		currSide[0] = "";
+		currSide[1] = "";
+		currSide[2] = "";
+		QString contentsText = "";
+		setContentsText(contentsText);
+		ui.contentsTextBrowser->setText(contentsText);
+		ui.contentsTextBrowser->update();
+		});
+	QObject::connect(ui.searchButton, SIGNAL(clicked()), this, SLOT(searchDish()));
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(saveDish()));
 
 	for (int i = 0; i < CONTENTS_TYPE; ++i) {
@@ -49,7 +57,7 @@ QTextBrowser* ContentsClass::getDateTextBrowser() {
 }
 QTextBrowser* ContentsClass::getContentsTextBrowser() {
 	return ui.contentsTextBrowser;
-}
+} 
 void ContentsClass::setContents(Contents* contents) {
 	if (contents != nullptr) {
 		this->contents = contents;
@@ -124,20 +132,41 @@ void ContentsClass::resetSavedDishes() {
 	currSide[0] = "";
 	currSide[1] = "";
 	currSide[2] = "";
+
+	radioBtnIndex = -1;
+
+	ui.radioButton->setAutoExclusive(false);
+	ui.radioButton->setChecked(false);
+	ui.radioButton->setAutoExclusive(true);
+	ui.radioButton_2->setAutoExclusive(false);
+	ui.radioButton_2->setChecked(false);
+	ui.radioButton_2->setAutoExclusive(true);
+	ui.radioButton_3->setAutoExclusive(false);
+	ui.radioButton_3->setChecked(false);
+	ui.radioButton_3->setAutoExclusive(true);
+
+	ui.searchLine->setText("");
+}
+
+void ContentsClass::radioFunction(int i)
+{
+	radioBtnIndex = i;
 }
 void ContentsClass::clickedDish() {
 	ui.contentsTextBrowser->clear();
-	DISH_TYPE type = static_cast<DISH_TYPE>(ui.tabWidget->currentIndex());
-	switch (type)
+	
+	switch (radioBtnIndex)
 	{
-	case DISH_TYPE::RICE:
+	case 0:
 		currRice = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
 		break;
-	case DISH_TYPE::SOUP:
+	case 1:
 		currSoup = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
 		break;
-	default:
+	case 2:
 		setSide(listViews[ui.tabWidget->currentIndex()]->currentItem()->text());
+		break;
+	default:
 		break;
 	}
 	QString contentsText = "";
@@ -145,7 +174,30 @@ void ContentsClass::clickedDish() {
 	ui.contentsTextBrowser->setText(contentsText);
 	ui.contentsTextBrowser->update();
 }
+void ContentsClass::searchDish() {
+	if (ui.searchLine->text() == "") {
+		loadData();
+		return;
+	}
+	string query = "SELECT * FROM food WHERE name LIKE \'%" + ui.searchLine->text().toStdString() + "%\'";
+	int result = mysql_query(conn, query.c_str());
+	
+	if (result == 0) {
+		MYSQL_RES* sql_result = nullptr;
+		MYSQL_ROW sql_row;
 
+		for (int i = 0; i < 3; ++i) {
+			listViews[i]->clear();
+		}
+
+		sql_result = mysql_store_result(conn);
+		while ((sql_row = mysql_fetch_row(sql_result)) != nullptr) {
+			listViews[atoi(sql_row[1])]->addItem(QString::fromUtf8(sql_row[0]));
+		}
+		ui.searchLine->setText("");
+		mysql_free_result(sql_result);
+	}
+}
 void ContentsClass::saveDish() {
 	QDate date = calendar->getDate();
 

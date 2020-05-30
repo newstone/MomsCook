@@ -39,7 +39,14 @@ void Contents::reset() {
 	dishes[static_cast<int>(DISH_TYPE::SIDE3)].setName("");
 }
 
+float getCalory(QString s) {
+	float sum = 0.f;
+	// 데이터베이스로 부터 칼로리정보 얻기
+	return 0.f;
+}
+
 QString Contents::getContentsString() {
+	float kcal = 0.f;
 	QString contents = "\n";
 	for (DISH_TYPE i = DISH_TYPE::RICE; i != DISH_TYPE::END; ++i) {
 		switch (i)
@@ -48,16 +55,19 @@ QString Contents::getContentsString() {
 			contents += QString::fromLocal8Bit("특식: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
+			kcal = getCalory(dishes[static_cast<int>(i)].getName());
 			break;
 		case DISH_TYPE::SOUP:
 			contents += QString::fromLocal8Bit("국: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
+			kcal = getCalory(dishes[static_cast<int>(i)].getName());
 			break;
 		case DISH_TYPE::SIDE1:
 			contents += QString::fromLocal8Bit("반찬1: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
+			kcal = getCalory(dishes[static_cast<int>(i)].getName());
 			break;
 		case DISH_TYPE::SIDE2:
 			contents += QString::fromLocal8Bit("반찬2: ");
@@ -68,10 +78,17 @@ QString Contents::getContentsString() {
 			contents += QString::fromLocal8Bit("반찬3: ");
 			contents += dishes[static_cast<int>(i)].getName();
 			contents += "\n";
+			kcal = getCalory(dishes[static_cast<int>(i)].getName());
 			break;
 		default:
 			break;
 		}
 	}
+	if (kcal > 0.f) {
+		contents += QString::fromLocal8Bit("\n칼로리: ");
+		contents += QString::fromStdString(to_string(kcal));
+		contents += QString::fromLocal8Bit("kcal");
+	}
+	
 	return contents;
 }

@@ -27,7 +27,7 @@
    </property>
    <widget class="QWidget" name="tab_1">
     <attribute name="title">
-     <string>특식</string>
+     <string>밥</string>
     </attribute>
     <widget class="QListWidget" name="listWidget_1">
      <property name="geometry">
@@ -101,7 +101,7 @@
     <item>
      <widget class="QRadioButton" name="radioButton">
       <property name="text">
-       <string>특식</string>
+       <string>밥</string>
       </property>
      </widget>
     </item>

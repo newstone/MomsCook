@@ -16,7 +16,7 @@ class Dish {
 public:
 	Dish();
 	virtual ~Dish();
-	Nutrient getNutrient();
+	const Nutrient& getNutrient();
 	int getCalory(); 
 	void setName(const QString& name);
 	const QString& getName();

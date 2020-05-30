@@ -33,7 +33,9 @@ public:
 	QTextBrowser* getDateTextBrowser();
 	QTextBrowser* getContentsTextBrowser();
 private slots:
+	void radioFunction(int i);
 	void clickedDish();
+	void searchDish();
 	void saveDish();
 private:
 	Ui::ContentsClass ui;
@@ -46,6 +48,7 @@ private:
 	Contents* contents;
 	Calendar* calendar;
 	int dateIndex;
+	int radioBtnIndex;
 
 	bool updateFlag;
 

@@ -11,3 +11,9 @@ void Dish::setName(const QString& name) {
 const QString& Dish::getName() {
 	return name;
 }
+const Nutrient& Dish::getNutrient() {
+	return mNutrient;
+}
+int Dish::getCalory() {
+	return calory;
+}

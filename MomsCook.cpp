@@ -72,7 +72,6 @@ void MomsCook::init() {
 	calendar.makeCalendar(ui, days, date);
 	selectedContents->setContents(calendar.getContents());
 	addContents->setSQL(conn);
-	selectedContents->setMYSQL(conn);
 	this->installEventFilter(this);
 }
 

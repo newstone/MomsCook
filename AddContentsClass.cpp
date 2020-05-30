@@ -35,6 +35,7 @@ ContentsClass* AddContentsClass::getContentsClass() {
 }
 void AddContentsClass::setSQL(MYSQL* c) {
 	conn = c;
+	contentsClass->setMYSQL(conn);
 	updateFoodList();
 }
 
