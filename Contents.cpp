@@ -1,29 +1,31 @@
 #include "Contents.h"
 #include <QString>
 
-Contents::Contents() : dishes(DISH){ 
+Contents::Contents() {
+	dishes[0].resize(DISH);
+	dishes[1].resize(DISH);
 }
 Contents::~Contents() {
 }
 
 bool Contents::isInitialized() {
-	return dishes.size();
+	return dishes[0].size() > 0 && dishes[1].size() > 0;
 }
 
-bool Contents::setDish(DISH_TYPE type, const QString& dish) {
-	if (dishes.size() == 0) {
+bool Contents::setDish(int t, DISH_TYPE type, const QString& dish) {
+	if (dishes[t].size() == 0) {
 		return false;
 	}
 
 	if (type != DISH_TYPE::SIDE1) {
-		if (dishes[static_cast<int>(type)].getName() == "") {
-			dishes[static_cast<int>(type)].setName(dish);
+		if (dishes[t][static_cast<int>(type)].getName() == "") {
+			dishes[t][static_cast<int>(type)].setName(dish);
 		}
 	}
 	else {
 		for (DISH_TYPE i = DISH_TYPE::SIDE1; i != DISH_TYPE::END; ++i) {
-			if (dishes[static_cast<int>(i)].getName() == "") {
-				dishes[static_cast<int>(i)].setName(dish);
+			if (dishes[t][static_cast<int>(i)].getName() == "") {
+				dishes[t][static_cast<int>(i)].setName(dish);
 				break;
 			}
 		}
@@ -32,11 +34,13 @@ bool Contents::setDish(DISH_TYPE type, const QString& dish) {
 }
 
 void Contents::reset() {
-	dishes[static_cast<int>(DISH_TYPE::RICE)].setName("");
-	dishes[static_cast<int>(DISH_TYPE::SOUP)].setName("");
-	dishes[static_cast<int>(DISH_TYPE::SIDE1)].setName("");
-	dishes[static_cast<int>(DISH_TYPE::SIDE2)].setName("");
-	dishes[static_cast<int>(DISH_TYPE::SIDE3)].setName("");
+	for (int j = 0; j < 2; ++j) {
+		dishes[j][static_cast<int>(DISH_TYPE::RICE)].setName("");
+		dishes[j][static_cast<int>(DISH_TYPE::SOUP)].setName("");
+		dishes[j][static_cast<int>(DISH_TYPE::SIDE1)].setName("");
+		dishes[j][static_cast<int>(DISH_TYPE::SIDE2)].setName("");
+		dishes[j][static_cast<int>(DISH_TYPE::SIDE3)].setName("");
+	}
 }
 
 float getCalory(QString s) {
@@ -46,49 +50,48 @@ float getCalory(QString s) {
 }
 
 QString Contents::getContentsString() {
-	float kcal = 0.f;
 	QString contents = "\n";
-	for (DISH_TYPE i = DISH_TYPE::RICE; i != DISH_TYPE::END; ++i) {
-		switch (i)
-		{
-		case DISH_TYPE::RICE:
-			contents += QString::fromLocal8Bit("특식: ");
-			contents += dishes[static_cast<int>(i)].getName();
-			contents += "\n";
-			kcal = getCalory(dishes[static_cast<int>(i)].getName());
-			break;
-		case DISH_TYPE::SOUP:
-			contents += QString::fromLocal8Bit("국: ");
-			contents += dishes[static_cast<int>(i)].getName();
-			contents += "\n";
-			kcal = getCalory(dishes[static_cast<int>(i)].getName());
-			break;
-		case DISH_TYPE::SIDE1:
-			contents += QString::fromLocal8Bit("반찬1: ");
-			contents += dishes[static_cast<int>(i)].getName();
-			contents += "\n";
-			kcal = getCalory(dishes[static_cast<int>(i)].getName());
-			break;
-		case DISH_TYPE::SIDE2:
-			contents += QString::fromLocal8Bit("반찬2: ");
-			contents += dishes[static_cast<int>(i)].getName();
-			contents += "\n";
-			break;
-		case DISH_TYPE::SIDE3:
-			contents += QString::fromLocal8Bit("반찬3: ");
-			contents += dishes[static_cast<int>(i)].getName();
-			contents += "\n";
-			kcal = getCalory(dishes[static_cast<int>(i)].getName());
-			break;
-		default:
-			break;
+	
+	for (int j = 0; j < 2; ++j) {
+		if (j == 0) {
+			contents += QString::fromLocal8Bit("[중식]\n");
+		}
+		else {
+			contents += QString::fromLocal8Bit("\n[석식]\n");
+		}
+
+		for (DISH_TYPE i = DISH_TYPE::RICE; i != DISH_TYPE::END; ++i) {
+			switch (i)
+			{
+			case DISH_TYPE::RICE:
+				contents += QString::fromLocal8Bit("특식: ");
+				contents += dishes[j][static_cast<int>(i)].getName();
+				contents += "\n";
+				break;
+			case DISH_TYPE::SOUP:
+				contents += QString::fromLocal8Bit("국: ");
+				contents += dishes[j][static_cast<int>(i)].getName();
+				contents += "\n";
+				break;
+			case DISH_TYPE::SIDE1:
+				contents += QString::fromLocal8Bit("반찬1: ");
+				contents += dishes[j][static_cast<int>(i)].getName();
+				contents += "\n";
+				break;
+			case DISH_TYPE::SIDE2:
+				contents += QString::fromLocal8Bit("반찬2: ");
+				contents += dishes[j][static_cast<int>(i)].getName();
+				contents += "\n";
+				break;
+			case DISH_TYPE::SIDE3:
+				contents += QString::fromLocal8Bit("반찬3: ");
+				contents += dishes[j][static_cast<int>(i)].getName();
+				contents += "\n";
+				break;
+			default:
+				break;
+			}
 		}
 	}
-	if (kcal > 0.f) {
-		contents += QString::fromLocal8Bit("\n칼로리: ");
-		contents += QString::fromStdString(to_string(kcal));
-		contents += QString::fromLocal8Bit("kcal");
-	}
-	
 	return contents;
 }

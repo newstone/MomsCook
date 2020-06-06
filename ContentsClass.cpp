@@ -8,7 +8,7 @@
 #pragma comment(lib, "libmysql.lib")
 
 ContentsClass::ContentsClass(QWidget* parent)
-	: QWidget(parent), contents(nullptr), dateIndex(0), currRice(""), currSoup(""), updateFlag(false), addContents(nullptr), radioBtnIndex(-1){
+	: QWidget(parent), contents(nullptr), dateIndex(0), updateFlag(false), addContents(nullptr), radioBtnIndex(-1){
 	ui.setupUi(this);
 
 	listViews.append(this->findChild<QListWidget*>("listWidget_1"));
@@ -25,11 +25,14 @@ ContentsClass::ContentsClass(QWidget* parent)
 		radioFunction(2);
 		});
 	connect(ui.resetButton, &QPushButton::clicked, [=]() {
-		currRice = "";
-		currSoup = "";
-		currSide[0] = "";
-		currSide[1] = "";
-		currSide[2] = "";
+
+		for (unsigned int j = 0; j < 2; ++j) {
+			currRice[j] = "";
+			currSoup[j] = "";
+			currSide[j][0] = "";
+			currSide[j][1] = "";
+			currSide[j][2] = "";
+		}
 		QString contentsText = "";
 		setContentsText(contentsText);
 		ui.contentsTextBrowser->setText(contentsText);
@@ -39,7 +42,6 @@ ContentsClass::ContentsClass(QWidget* parent)
 	QObject::connect(ui.pushButton, SIGNAL(clicked()), this, SLOT(saveDish()));
 
 	for (int i = 0; i < CONTENTS_TYPE; ++i) {
-		currSide[i] = "";
 		QObject::connect(listViews[i], SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(clickedDish()));
 	}
 }
@@ -89,10 +91,10 @@ bool ContentsClass::isUpdated() {
 	}
 	return false;
 }
-bool ContentsClass::setSide(const QString& side) {
+bool ContentsClass::setSide(int t, const QString& side) {
 	for (unsigned int i = 0; i < 3; ++i) {
-		if (currSide[i] == "") {
-			currSide[i] = side;
+		if (currSide[t][i] == "") {
+			currSide[t][i] = side;
 			return true;
 		}
 	}
@@ -101,24 +103,43 @@ bool ContentsClass::setSide(const QString& side) {
 
 void ContentsClass::setContentsText(QString& contentsText) {
 	contentsText += "\n";
+	contentsText += QString::fromLocal8Bit("[중식]\n");
 	contentsText += QString::fromLocal8Bit("특식: ");
-	contentsText += currRice;
+	contentsText += currRice[0];
 	contentsText += "\n";
 	contentsText += QString::fromLocal8Bit("국: ");
-	contentsText += currSoup;
+	contentsText += currSoup[0];
 	contentsText += "\n";
 	contentsText += QString::fromLocal8Bit("반찬1: ");
-	contentsText += currSide[0];
+	contentsText += currSide[0][0];
 	contentsText += "\n";
 	contentsText += QString::fromLocal8Bit("반찬2: ");
-	contentsText += currSide[1];
+	contentsText += currSide[0][1];
 	contentsText += "\n";
 	contentsText += QString::fromLocal8Bit("반찬3: ");
-	contentsText += currSide[2];
+	contentsText += currSide[0][2];
+	contentsText += "\n";
+
+	contentsText += "\n";
+	contentsText += QString::fromLocal8Bit("[석식]\n");
+	contentsText += QString::fromLocal8Bit("특식: ");
+	contentsText += currRice[1];
+	contentsText += "\n";
+	contentsText += QString::fromLocal8Bit("국: ");
+	contentsText += currSoup[1];
+	contentsText += "\n";
+	contentsText += QString::fromLocal8Bit("반찬1: ");
+	contentsText += currSide[1][0];
+	contentsText += "\n";
+	contentsText += QString::fromLocal8Bit("반찬2: ");
+	contentsText += currSide[1][1];
+	contentsText += "\n";
+	contentsText += QString::fromLocal8Bit("반찬3: ");
+	contentsText += currSide[1][2];
 	contentsText += "\n";
 }
 
-void ContentsClass::setContentsText(Calendar* c) {
+void ContentsClass::setCalendar(Calendar* c) {
 	calendar = c;
 }
 
@@ -127,12 +148,13 @@ void ContentsClass::setMYSQL(MYSQL* c) {
 }
 
 void ContentsClass::resetSavedDishes() {
-	currRice = "";
-	currSoup = "";
-	currSide[0] = "";
-	currSide[1] = "";
-	currSide[2] = "";
-
+	for (unsigned int j = 0; j < 2; ++j) {
+		currRice[j] = "";
+		currSoup[j] = "";
+		currSide[j][0] = "";
+		currSide[j][1] = "";
+		currSide[j][2] = "";
+	}
 	radioBtnIndex = -1;
 
 	ui.radioButton->setAutoExclusive(false);
@@ -158,13 +180,24 @@ void ContentsClass::clickedDish() {
 	switch (radioBtnIndex)
 	{
 	case 0:
-		currRice = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
+		if(currRice[0] == "")
+			currRice[0] = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
+		else if (currRice[1] == "")
+			currRice[1] = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
 		break;
 	case 1:
-		currSoup = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
+		if(currSoup[0] == "")
+			currSoup[0] = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
+		else if (currSoup[1] == "")
+			currSoup[1] = listViews[ui.tabWidget->currentIndex()]->currentItem()->text();
 		break;
 	case 2:
-		setSide(listViews[ui.tabWidget->currentIndex()]->currentItem()->text());
+		if (currSide[0][2] == "")
+			setSide(0, listViews[ui.tabWidget->currentIndex()]->currentItem()->text());
+		else if (currSide[1][2] == "")
+			setSide(1, listViews[ui.tabWidget->currentIndex()]->currentItem()->text());
+		break;
+		
 		break;
 	default:
 		break;
@@ -194,21 +227,18 @@ void ContentsClass::searchDish() {
 		while ((sql_row = mysql_fetch_row(sql_result)) != nullptr) {
 			listViews[atoi(sql_row[1])]->addItem(QString::fromUtf8(sql_row[0]));
 		}
-		ui.searchLine->setText("");
 		mysql_free_result(sql_result);
 	}
 }
 void ContentsClass::saveDish() {
 	QDate date = calendar->getDate();
-
-	if (currRice == "")
-		assert(false);
-
-	contents[dateIndex].setDish(DISH_TYPE::RICE, currRice);
-	contents[dateIndex].setDish(DISH_TYPE::SOUP, currSoup);
-	contents[dateIndex].setDish(DISH_TYPE::SIDE1, currSide[0]);
-	contents[dateIndex].setDish(DISH_TYPE::SIDE2, currSide[1]);
-	contents[dateIndex].setDish(DISH_TYPE::SIDE3, currSide[2]);
+	for (unsigned int j = 0; j < 2; ++j) {
+		contents[dateIndex].setDish(j, DISH_TYPE::RICE, currRice[j]);
+		contents[dateIndex].setDish(j, DISH_TYPE::SOUP, currSoup[j]);
+		contents[dateIndex].setDish(j, DISH_TYPE::SIDE1, currSide[j][0]);
+		contents[dateIndex].setDish(j, DISH_TYPE::SIDE2, currSide[j][1]);
+		contents[dateIndex].setDish(j, DISH_TYPE::SIDE3, currSide[j][2]);
+	}
 	string sql = "INSERT INTO menu VALUES ( ";
 	sql += "'";
 	sql += to_string(date.year());
@@ -224,14 +254,25 @@ void ContentsClass::saveDish() {
 	sql += to_string(date.day());
 	sql += "', '";
 
-	sql += currRice.toStdString();
+	sql += currRice[0].toStdString();
 	sql += "', '";
 
-	sql += currSoup.toStdString();
+	sql += currSoup[0].toStdString();
 	sql += "', ";
 	for (unsigned int i = 0; i < 3; ++i) {
 		sql += "'";
-		sql += currSide[i].toStdString();
+		sql += currSide[0][i].toStdString();
+		sql += "', ";
+	}
+
+	sql += currRice[1].toStdString();
+	sql += "', '";
+
+	sql += currSoup[1].toStdString();
+	sql += "', ";
+	for (unsigned int i = 0; i < 3; ++i) {
+		sql += "'";
+		sql += currSide[1][i].toStdString();
 		sql += "'";
 		if (i < 2) {
 			sql += ", ";
@@ -246,16 +287,28 @@ void ContentsClass::saveDish() {
 		mysql_free_result(res);
 	}
 	else {
-		sql = "UPDATE menu SET rice = \'";
-		sql += currRice.toStdString();
-		sql += "\', soup = \'";
-		sql += currSoup.toStdString();
-		sql += "\', side1 = \'";
-		sql += currSide[0].toStdString();
-		sql += "\', side2 = \'";
-		sql += currSide[1].toStdString();
-		sql += "\', side3 = \'";
-		sql += currSide[2].toStdString();
+		sql = "UPDATE menu SET ricea = \'";
+		sql += currRice[0].toStdString();
+		sql += "\', soupa = \'";
+		sql += currSoup[0].toStdString();
+		sql += "\', sidea1 = \'";
+		sql += currSide[0][0].toStdString();
+		sql += "\', sidea2 = \'";
+		sql += currSide[0][1].toStdString();
+		sql += "\', sidea3 = \'";
+		sql += currSide[0][2].toStdString();
+
+		sql += "\', riceb = \'";
+		sql += currRice[1].toStdString();
+		sql += "\', soupb = \'";
+		sql += currSoup[1].toStdString();
+		sql += "\', sideb1 = \'";
+		sql += currSide[1][0].toStdString();
+		sql += "\', sideb2 = \'";
+		sql += currSide[1][1].toStdString();
+		sql += "\', sideb3 = \'";
+		sql += currSide[1][2].toStdString();
+
 		sql += "\' WHERE date = \'";
 		sql += to_string(date.year());
 		sql += "-";

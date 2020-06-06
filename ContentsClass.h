@@ -21,9 +21,9 @@ public:
 	~ContentsClass();
 	void setDateIndex(unsigned int idx);
 	void setContents(Contents* contents);
-	bool setSide(const QString& side);
+	bool setSide(int t, const QString& side);
 	void setContentsText(QString& contentsText);
-	void setContentsText(Calendar* c);
+	void setCalendar(Calendar* c);
 	void setMYSQL(MYSQL* conn);
 	void resetSavedDishes();
 	void loadData();
@@ -52,7 +52,7 @@ private:
 
 	bool updateFlag;
 
-	QString currRice;
-	QString currSoup;
-	QString currSide[3];
+	QString currRice[2];
+	QString currSoup[2];
+	QString currSide[2][3];
 };

@@ -83,19 +83,19 @@ public:
         tab_1->setObjectName(QString::fromUtf8("tab_1"));
         listWidget_1 = new QListWidget(tab_1);
         listWidget_1->setObjectName(QString::fromUtf8("listWidget_1"));
-        listWidget_1->setGeometry(QRect(0, 0, 451, 311));
+        listWidget_1->setGeometry(QRect(0, 0, 451, 241));
         tabWidget->addTab(tab_1, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         listWidget_2 = new QListWidget(tab_2);
         listWidget_2->setObjectName(QString::fromUtf8("listWidget_2"));
-        listWidget_2->setGeometry(QRect(0, 0, 451, 311));
+        listWidget_2->setGeometry(QRect(0, 0, 451, 241));
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         listWidget_3 = new QListWidget(tab_3);
         listWidget_3->setObjectName(QString::fromUtf8("listWidget_3"));
-        listWidget_3->setGeometry(QRect(0, 0, 451, 311));
+        listWidget_3->setGeometry(QRect(0, 0, 451, 241));
         tabWidget->addTab(tab_3, QString());
         layoutWidget1 = new QWidget(ContentsClass);
         layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
@@ -133,7 +133,7 @@ public:
         retranslateUi(ContentsClass);
         QObject::connect(pushButton_2, SIGNAL(clicked()), ContentsClass, SLOT(close()));
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(ContentsClass);

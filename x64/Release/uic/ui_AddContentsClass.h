@@ -141,12 +141,12 @@ public:
     void retranslateUi(QWidget *AddContentsClass)
     {
         AddContentsClass->setWindowTitle(QCoreApplication::translate("AddContentsClass", "AddContentsClass", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_1), QCoreApplication::translate("AddContentsClass", "\355\212\271\354\213\235", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_1), QCoreApplication::translate("AddContentsClass", "\353\260\245", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("AddContentsClass", "\352\265\255", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("AddContentsClass", "\353\260\230\354\260\254", nullptr));
         label->setText(QCoreApplication::translate("AddContentsClass", "\354\235\214\354\213\235 \354\235\264\353\246\204", nullptr));
         label_2->setText(QCoreApplication::translate("AddContentsClass", "\354\235\214\354\213\235 \354\242\205\353\245\230", nullptr));
-        radioButton->setText(QCoreApplication::translate("AddContentsClass", "\355\212\271\354\213\235", nullptr));
+        radioButton->setText(QCoreApplication::translate("AddContentsClass", "\353\260\245", nullptr));
         radioButton_2->setText(QCoreApplication::translate("AddContentsClass", "\352\265\255", nullptr));
         radioButton_3->setText(QCoreApplication::translate("AddContentsClass", "\353\260\230\354\260\254", nullptr));
         pushButton->setText(QCoreApplication::translate("AddContentsClass", "\354\266\224\352\260\200", nullptr));

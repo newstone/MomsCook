@@ -11,11 +11,11 @@ public:
 	~Contents();
 
 	bool isInitialized();
-	bool setDish(DISH_TYPE type, const QString& dish);
+	bool setDish(int t, DISH_TYPE type, const QString& dish);
 	QString getContentsString();
 	void reset();
 private:
 	string selectedDay;
 	string toDay;
-	vector<Dish> dishes;
+	vector<Dish> dishes[2];
 };

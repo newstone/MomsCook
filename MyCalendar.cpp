@@ -65,10 +65,12 @@ void Calendar::reloadContents(const QDate& date) {
 	if (result == 0) {
 		sql_result = mysql_store_result(conn);
 		while((sql_row = mysql_fetch_row(sql_result)) != nullptr) {
-			string currDate = sql_row[0];
-			int currDay = atoi(&currDate[8]);
-			for (unsigned int i = 0; i < 5; ++i) {
-				contents[currDay - 1].setDish(static_cast<DISH_TYPE>(i), QString::fromUtf8(sql_row[i + 1]));
+			for (unsigned int j = 0; j < 2; ++j) {
+				string currDate = sql_row[0];
+				int currDay = atoi(&currDate[8]);
+				for (unsigned int i = 0; i < 5; ++i) {
+					contents[currDay - 1].setDish(j, static_cast<DISH_TYPE>(i), QString::fromUtf8(sql_row[i + 1]));
+				}
 			}
 		}
 		mysql_free_result(sql_result);

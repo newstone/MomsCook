@@ -7,7 +7,7 @@
 using namespace std;
 
 #define CALENDAR_WIDTH 153
-#define CALENDAR_HEIGHT 141
+#define CALENDAR_HEIGHT 264
 
 //////////////////////////////////////////////////////////////////////
 
@@ -30,7 +30,7 @@ MomsCook::MomsCook(QWidget *parent)
 	statisticsClass->hide();
 
 	selectedContents = addContents->getContentsClass();
-	selectedContents->setContentsText(&calendar);
+	selectedContents->setCalendar(&calendar);
 	connect(ui.prevButton, &QPushButton::clicked, [=]() {
 		handleButton(false);
 		});
@@ -80,7 +80,7 @@ void MomsCook::initDatabase() {
 	if (!conn) {
 		assert(false);
 	}
-	conn = mysql_real_connect(conn, "localhost", "root", "Wja896523", "dish", 3306, (char*)NULL, 0);
+	conn = mysql_real_connect(conn, NULL, "baron", "Wja896523", "dish", 3306, (char*)NULL, 0);
 	if (conn) {
 		std::cout << "Connect Success!" << std::endl;
 	}
